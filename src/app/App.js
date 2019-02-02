@@ -37,7 +37,7 @@ const PublicRoute = ({ component: Component, authed, ...rest}) => {
           <Component {...props} />
         ) : (
           <Redirect
-            to={{ pathname: '/home', state: {from: props.location}}}
+            to={{ pathname: '/admin', state: {from: props.location}}}
           />
         )
       }
@@ -73,7 +73,7 @@ class App extends Component {
       <div className="App">
         <BrowserRouter>
           <div>
-            <Navbar />
+            <Navbar authed={this.state.authed} logout={this.logout}/>
             <div className="container">
               <div className="row">
                 <Switch>
