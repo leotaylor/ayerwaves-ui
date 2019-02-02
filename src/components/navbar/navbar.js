@@ -1,17 +1,41 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import artistRequest from '../../apiRequest/artists';
 
 import './navbar.css';
 
 import authRequests from '../../firebaseRequests/auth';
 
 class Navbar extends React.Component {
+
+  state = {
+    artists: [],
+  }
+
+  componentDidMount () {
+    artistRequest
+      .getRequest()
+      .then((artists) => {
+        this.setState({artists});
+      })
+      .catch((err) => {
+        console.error('error with getting artist', err);
+      });
+  }
+
   render () {
     const {authed, logout} = this.props;
     const logoutClickEvent = (e) => {
       authRequests.logoutUser();
       logout();
     };
+
+    const artistComponent = this.state.artists.map((artist) => {
+      return (
+        <option value={artist.id}>{artist.name}</option>
+      );
+    });
+
     return (
       <div className="Navbar">
         <nav className="navbar navbar-inverse">
@@ -29,7 +53,10 @@ class Navbar extends React.Component {
               ) : (
                 <ul className="nav navbar-nav navbar-right">
                   <li>
-                    <Link to="/">Artists</Link>
+                    <select>
+                      <option value=''>Artists</option>
+                      {artistComponent}
+                    </select>
                   </li>
                   <li>
                     <Link to="/admin">Admin</Link>
