@@ -32,7 +32,7 @@ class Navbar extends React.Component {
 
     const artistComponent = this.state.artists.map((artist) => {
       return (
-        <option value={artist.id}>{artist.name}</option>
+        <option key={artist.id} value={artist.id}>{artist.name}</option>
       );
     });
 
