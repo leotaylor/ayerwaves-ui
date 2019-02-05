@@ -29,6 +29,11 @@ class artistPage extends React.Component {
         <h1>ArtistPage</h1>
         <div>
           <h1>{singleArtistComponent.name}</h1>
+          <img alt="bandphoto" src={singleArtistComponent.imageLink}></img>
+          <h3>Genre: {singleArtistComponent.genreName}</h3>
+          <h4>{singleArtistComponent.description}</h4>
+          <h3>Playing on: {singleArtistComponent.day}</h3>
+          <h3>Stage: {singleArtistComponent.stageName}</h3>
         </div>
       </div>
     );
