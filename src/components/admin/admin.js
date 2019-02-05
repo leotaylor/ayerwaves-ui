@@ -3,6 +3,7 @@ import './admin.css';
 import artistRequest from '../../apiRequest/artists';
 import GenreSelect from './GenreSelect';
 import StageSelect from './StageSelect';
+import genreRequest from '../../apiRequest/genre';
 
 const defaultArtist = {
   name: '',
@@ -18,6 +19,7 @@ class admin extends React.Component {
   state = {
     artists: [],
     newArtist: defaultArtist,
+    genres: [],
   }
 
   componentDidMount () {
@@ -29,7 +31,57 @@ class admin extends React.Component {
       .catch((err) => {
         console.error('error with getting artist', err);
       });
+    genreRequest
+      .getGenre()
+      .then((genres) => {
+        this.setState({genres});
+      })
+      .catch((err) => {
+        console.error('error with gettign genres', err);
+      });
   }
+
+  postArtist = (e) => {
+    e.preventDefault();
+    artistRequest.postArtist(this.state.newArtist);
+    this.componentDidMount();
+  }
+
+  formFieldStringState = (name, e) => {
+    const tempArtist = {...this.state.newArtist};
+    tempArtist[name] = e.target.value;
+    this.setState({newArtist: tempArtist});
+  }
+
+  formFieldNumberState = (name, e) => {
+    const tempArtist = {...this.state.newArtist};
+    tempArtist[name] = e.target.value * 1;
+    this.setState({newArtist: tempArtist});
+  }
+
+  nameChange = (e) => {
+    this.formFieldStringState('name', e);
+  };
+
+  dayChange = (e) => {
+    this.formFieldStringState('day', e);
+  };
+
+  genreChange = (e) => {
+    this.formFieldNumberState('genreName', e);
+  };
+
+  stageChange = (e) => {
+    this.formFieldNumberState('stageName', e);
+  };
+
+  descChange = (e) => {
+    this.formFieldStringState('description', e);
+  };
+
+  imageChange = (e) => {
+    this.formFieldStringState('imageLink', e);
+  };
 
   formSubmit = (e) => {
     const {onSubmit} = this.props;
@@ -44,7 +96,7 @@ class admin extends React.Component {
       newArtist.imageLink
     ) {
       onSubmit(this.state.newArtist);
-      this.setState({newListing: defaultArtist});
+      this.setState({newArtist: defaultArtist});
     } else {
       alert('ugh');
     }
@@ -53,7 +105,7 @@ class admin extends React.Component {
 
   render () {
     const submitArtist = () => {
-
+      console.log('you pressed button');
     };
 
     const editArtist = (id) => {
@@ -67,6 +119,16 @@ class admin extends React.Component {
           <button type="button" className="btn btn-danger btn-xs glyphicon glyphicon-trash" aria-hidden="true">
           </button>
         </div>
+      );
+    });
+
+    const genreComponent = this.state.genres.map((genre) => {
+      return (
+        <GenreSelect
+          key={genre.id}
+          value={genre.id}
+          onChange={this.genreChange}
+        />
       );
     });
 
@@ -92,8 +154,8 @@ class admin extends React.Component {
                     type="text"
                     id="name"
                     placeholder="Artist Name"
-                    // value={newListing.address}
-                    // onChange={this.addressChange}
+                    value={this.state.newArtist.name}
+                    onChange={this.nameChange}
                   />
                 </fieldset>
 
@@ -105,8 +167,8 @@ class admin extends React.Component {
                     type="text"
                     id="day"
                     placeholder="Friday"
-                    // value={newListing.squareFootage}
-                    // onChange={this.squareFootageChange}
+                    value={this.state.newArtist.day}
+                    onChange={this.dayChange}
                   />
                 </fieldset>
 
@@ -115,28 +177,18 @@ class admin extends React.Component {
                 <fieldset className="col-xs-6">
                   <label htmlFor="genre">Genre:</label>
                   <br />
-                  {/* <input
-                    // className="col-xs-12"
-                    // type="text"
-                    // id="genre"
-                    // placeholder="Make a dropdown"
-                    // value={newListing.city}
-                    // onChange={this.cityChange}
-                  />  */}
-                  <GenreSelect/>
+                  {genreComponent}
                 </fieldset>
                 <fieldset className="col-xs-6">
                   <label htmlFor="stage">Stage:</label>
                   <br />
                   {/* <input
-                    className="col-xs-12"
-                    type="text"
                     id="stage"
-                    placeholder="make a dropdown"
-                    // value={newListing.state}
-                    // onChange={this.stateChange}
                   /> */}
-                  <StageSelect/>
+                  <StageSelect
+                    value={this.state.newArtist.stageName}
+                    onChange={this.stageChange}
+                  />
                 </fieldset>
 
               </div>
@@ -150,8 +202,8 @@ class admin extends React.Component {
                     type="text"
                     id="description"
                     placeholder="Lovely one bedroom house"
-                    // value={newListing.description}
-                    // onChange={this.descriptionChange}
+                    value={this.state.newArtist.description}
+                    onChange={this.descChange}
                   />
                 </fieldset>
 
@@ -163,8 +215,8 @@ class admin extends React.Component {
                     type="text"
                     id="imageUrl"
                     placeholder="http://www.google.com"
-                    // value={newListing.imageUrl}
-                    // onChange={this.imageUrlChange}
+                    value={this.state.newArtist.imageLink}
+                    onChange={this.imageChange}
                   />
                 </fieldset>
               </div>
