@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import artistRequest from '../../apiRequest/artists';
+// import { NavDropdown } from 'react-bootstrap';
 
 import './navbar.css';
 
@@ -30,9 +31,13 @@ class Navbar extends React.Component {
       logout();
     };
 
+    const singleArtist = (id) => {
+      this.props.history.push(`/artist/${id}`);
+    };
+
     const artistComponent = this.state.artists.map((artist) => {
       return (
-        <option key={artist.id} value={artist.id}>{artist.name}</option>
+        <option key={artist.id} value={artist.id} onSelect={() => singleArtist(artist.id)}>{artist.name}</option>
       );
     });
 

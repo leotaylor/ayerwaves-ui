@@ -7,8 +7,10 @@ import Login from '../components/Login/Login';
 import Navbar from '../components/navbar/navbar';
 import Home from '../components/home/home';
 import Admin from '../components/admin/admin';
+import ArtistPage from '../components/artistPage/artistPage';
 
 import fbConnection from '../firebaseRequests/connection';
+
 fbConnection();
 
 const PrivateRoute = ({ component: Component, authed, ...rest}) => {
@@ -92,6 +94,11 @@ class App extends Component {
                     path="/home"
                     authed={this.state.authed}
                     component={Home}
+                  />
+                  <PublicRoute
+                    path="/artist/:id"
+                    authed={this.state.authed}
+                    component={ArtistPage}
                   />
                 </Switch>
               </div>
