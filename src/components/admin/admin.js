@@ -4,7 +4,7 @@ import artistRequest from '../../apiRequest/artists';
 import GenreSelect from './GenreSelect';
 import StageSelect from './StageSelect';
 
-const defaultListing = {
+const defaultArtist = {
   name: '',
   day: '',
   genreName: 0,
@@ -17,7 +17,7 @@ class admin extends React.Component {
 
   state = {
     artists: [],
-    newArtist: defaultListing,
+    newArtist: defaultArtist,
   }
 
   componentDidMount () {
@@ -30,6 +30,27 @@ class admin extends React.Component {
         console.error('error with getting artist', err);
       });
   }
+
+  formSubmit = (e) => {
+    const {onSubmit} = this.props;
+    const {newArtist} = this.state;
+    e.preventDefault();
+    if (
+      newArtist.name &&
+      newArtist.day &&
+      newArtist.genreName &&
+      newArtist.stageName &&
+      newArtist.description &&
+      newArtist.imageLink
+    ) {
+      onSubmit(this.state.newArtist);
+      this.setState({newListing: defaultArtist});
+    } else {
+      alert('ugh');
+    }
+
+  }
+
   render () {
     const submitArtist = () => {
 
