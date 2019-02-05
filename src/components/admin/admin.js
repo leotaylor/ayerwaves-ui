@@ -1,6 +1,7 @@
 import React from 'react';
 import './admin.css';
 import artistRequest from '../../apiRequest/artists';
+import GenreSelect from './GenreSelect';
 
 class admin extends React.Component {
   state = {
@@ -41,6 +42,7 @@ class admin extends React.Component {
         <h1>Admin</h1>
         <div className="col-sm-6 text-left">
           <h1>Artists</h1>
+          <h4>(Click name to edit)</h4>
           {artistComponent}
         </div>
 
@@ -80,14 +82,15 @@ class admin extends React.Component {
                 <fieldset className="col-xs-6">
                   <label htmlFor="genre">Genre:</label>
                   <br />
-                  <input
-                    className="col-xs-12"
-                    type="text"
-                    id="genre"
-                    placeholder="Make a dropdown"
+                  {/* <input
+                    // className="col-xs-12"
+                    // type="text"
+                    // id="genre"
+                    // placeholder="Make a dropdown"
                     // value={newListing.city}
                     // onChange={this.cityChange}
-                  />
+                  />  */}
+                  <GenreSelect/>
                 </fieldset>
                 <fieldset className="col-xs-6">
                   <label htmlFor="stage">Stage:</label>
