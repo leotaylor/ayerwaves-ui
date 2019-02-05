@@ -2,6 +2,7 @@ import React from 'react';
 import './admin.css';
 import artistRequest from '../../apiRequest/artists';
 import GenreSelect from './GenreSelect';
+import StageSelect from './StageSelect';
 
 class admin extends React.Component {
   state = {
@@ -95,14 +96,15 @@ class admin extends React.Component {
                 <fieldset className="col-xs-6">
                   <label htmlFor="stage">Stage:</label>
                   <br />
-                  <input
+                  {/* <input
                     className="col-xs-12"
                     type="text"
                     id="stage"
                     placeholder="make a dropdown"
                     // value={newListing.state}
                     // onChange={this.stateChange}
-                  />
+                  /> */}
+                  <StageSelect/>
                 </fieldset>
 
               </div>
