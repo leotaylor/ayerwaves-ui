@@ -4,9 +4,20 @@ import artistRequest from '../../apiRequest/artists';
 import GenreSelect from './GenreSelect';
 import StageSelect from './StageSelect';
 
+const defaultListing = {
+  name: '',
+  day: '',
+  genreName: 0,
+  stageName: 0,
+  description: '',
+  imageLink: '',
+};
+
 class admin extends React.Component {
+
   state = {
     artists: [],
+    newArtist: defaultListing,
   }
 
   componentDidMount () {
@@ -20,8 +31,8 @@ class admin extends React.Component {
       });
   }
   render () {
-    const goToArtistField = () => {
-      this.props.history.push('/artistField');
+    const submitArtist = () => {
+
     };
 
     const editArtist = (id) => {
@@ -136,7 +147,7 @@ class admin extends React.Component {
                   />
                 </fieldset>
               </div>
-              <button className="btn-success btn-lg" onClick={() => goToArtistField()}>Submit Artist</button>
+              <button className="btn-success btn-lg" onClick={() => submitArtist()}>Submit Artist</button>
             </form>
           </div>
         </div>
