@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import artistRequest from '../../apiRequest/artists';
+// import { NavDropdown } from 'react-bootstrap';
 
 import './navbar.css';
 
