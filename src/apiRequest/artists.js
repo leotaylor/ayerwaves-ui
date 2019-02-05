@@ -26,4 +26,17 @@ const getSingleArtist = (id) => {
   });
 };
 
-export default {getRequest, getSingleArtist};
+const postArtist = (newArtist) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .post(`https://ayerwavesapi.azurewebsites.net/api/artist`, newArtist)
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export default {getRequest, getSingleArtist, postArtist};
