@@ -1,6 +1,6 @@
 import React from 'react';
 import './home.css';
-import artistRequest from '../../apiRequest/artists'
+import artistRequest from '../../apiRequest/artists';
 
 class home extends React.Component {
   state = {
