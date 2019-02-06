@@ -5,6 +5,7 @@ import GenreSelect from './GenreSelect';
 import StageSelect from './StageSelect';
 import genreRequest from '../../apiRequest/genre';
 import stageRequest from '../../apiRequest/stage';
+import authRequest from '../../firebaseRequests/auth';
 
 const defaultArtist = {
   name: '',
@@ -52,7 +53,6 @@ class admin extends React.Component {
   }
 
   postArtist = (e) => {
-    e.preventDefault();
     artistRequest.postArtist(this.state.newArtist);
     this.componentDidMount();
   }
@@ -94,8 +94,8 @@ class admin extends React.Component {
   };
 
   formSubmit = (e) => {
-    const {onSubmit} = this.props;
     const {newArtist} = this.state;
+    newArtist.uid = authRequest.getUid();
     e.preventDefault();
     if (
       newArtist.name &&
@@ -105,12 +105,11 @@ class admin extends React.Component {
       newArtist.description &&
       newArtist.imageLink
     ) {
-      onSubmit(this.state.newArtist);
+      this.postArtist(this.state.newArtist);
       this.setState({newArtist: defaultArtist});
     } else {
       alert('ugh');
     }
-
   }
 
   render () {
