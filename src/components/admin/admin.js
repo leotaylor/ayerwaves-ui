@@ -53,8 +53,11 @@ class admin extends React.Component {
   }
 
   postArtist = (e) => {
-    artistRequest.postArtist(this.state.newArtist);
-    this.componentDidMount();
+    artistRequest
+      .postArtist(this.state.newArtist)
+      .then(() => {
+        this.componentDidMount();
+      });
   }
 
   formFieldStringState = (name, e) => {
@@ -125,9 +128,6 @@ class admin extends React.Component {
   }
 
   render () {
-    const submitArtist = () => {
-      console.log('you pressed button');
-    };
 
     const editArtist = (id) => {
       console.log(id);
@@ -252,7 +252,7 @@ class admin extends React.Component {
                   />
                 </fieldset>
               </div>
-              <button className="btn-success btn-lg" onClick={() => submitArtist()}>Submit Artist</button>
+              <button className="btn-success btn-lg">Submit Artist</button>
             </form>
           </div>
         </div>
