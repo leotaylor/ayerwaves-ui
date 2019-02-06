@@ -112,6 +112,18 @@ class admin extends React.Component {
     }
   }
 
+  deleteClick = (e) => {
+    const artistToDelete = e.target.id;
+    artistRequest
+      .deleteRequest(artistToDelete)
+      .then(() => {
+        this.componentDidMount();
+      })
+      .catch((err) => {
+        console.error('error with delete request', err);
+      });
+  }
+
   render () {
     const submitArtist = () => {
       console.log('you pressed button');
@@ -125,7 +137,7 @@ class admin extends React.Component {
       return (
         <div className="row" key={artist.id}>
           <p className="col-sm-6" onClick={(() => editArtist(artist))}>{artist.name}</p>
-          <button type="button" className="btn btn-danger btn-xs glyphicon glyphicon-trash" aria-hidden="true">
+          <button type="button" className="btn btn-danger btn-xs glyphicon glyphicon-trash" aria-hidden="true" id={artist.id} onClick={this.deleteClick}>
           </button>
         </div>
       );
