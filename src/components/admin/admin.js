@@ -4,6 +4,7 @@ import artistRequest from '../../apiRequest/artists';
 import GenreSelect from './GenreSelect';
 import StageSelect from './StageSelect';
 import genreRequest from '../../apiRequest/genre';
+import stageRequest from '../../apiRequest/stage';
 
 const defaultArtist = {
   name: '',
@@ -20,6 +21,7 @@ class admin extends React.Component {
     artists: [],
     newArtist: defaultArtist,
     genres: [],
+    stages: [],
   }
 
   componentDidMount () {
@@ -39,6 +41,14 @@ class admin extends React.Component {
       .catch((err) => {
         console.error('error with gettign genres', err);
       });
+    stageRequest
+      .getStage()
+      .then((stages) => {
+        this.setState({stages});
+      })
+      .catch((err) => {
+        console.error('error with getting genres', err);
+      });
   }
 
   postArtist = (e) => {
@@ -56,7 +66,6 @@ class admin extends React.Component {
   formFieldNumberState = (name, e) => {
     const tempArtist = {...this.state.newArtist};
     tempArtist[name] = e.target.value * 1;
-    console.log('e.target.value', e.target.value);
     this.setState({newArtist: tempArtist});
   }
 
@@ -69,7 +78,6 @@ class admin extends React.Component {
   };
 
   genreChange = (e) => {
-    console.log('e', e);
     this.formFieldNumberState('genreName', e);
   };
 
@@ -131,7 +139,17 @@ class admin extends React.Component {
           key={genre.id}
           type="number"
           value={genre.id}
-          // onChange={this.genreChange}
+        />
+      );
+    });
+
+    const stageComponent = this.state.stages.map((stage) => {
+      return (
+        <StageSelect
+          details={stage}
+          key={stage.id}
+          type="number"
+          value={stage.id}
         />
       );
     });
@@ -189,13 +207,11 @@ class admin extends React.Component {
                 <fieldset className="col-xs-6">
                   <label htmlFor="stage">Stage:</label>
                   <br />
-                  <StageSelect
-                    id="stage"
-                    value={this.state.newArtist.stageName}
-                    onChange={this.stageChange}
-                  />
+                  <select className="col-sm-12" onChange={this.stageChange}>
+                    <option>Stage</option>
+                    {stageComponent}
+                  </select>
                 </fieldset>
-
               </div>
 
               <div className="row">
