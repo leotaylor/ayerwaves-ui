@@ -27,14 +27,11 @@ class GenreSelect extends React.Component {
     //     </option>
     //   );
     // });
-    const {details} = this.props;
+    const details = this.props;
     return (
-      <select className="col-sm-12">
-        <option value=''>Genres</option>
-        <option className="col-sm-6">
-          {details.genreName}
-        </option>
-      </select>
+      <option className="col-sm-6" value={details.details.id}>
+        {details.details.genreName}
+      </option>
     );
   }
 }

@@ -56,6 +56,7 @@ class admin extends React.Component {
   formFieldNumberState = (name, e) => {
     const tempArtist = {...this.state.newArtist};
     tempArtist[name] = e.target.value * 1;
+    console.log('e.target.value', e.target.value);
     this.setState({newArtist: tempArtist});
   }
 
@@ -68,6 +69,7 @@ class admin extends React.Component {
   };
 
   genreChange = (e) => {
+    console.log('e', e);
     this.formFieldNumberState('genreName', e);
   };
 
@@ -125,9 +127,11 @@ class admin extends React.Component {
     const genreComponent = this.state.genres.map((genre) => {
       return (
         <GenreSelect
+          details={genre}
           key={genre.id}
+          type="number"
           value={genre.id}
-          onChange={this.genreChange}
+          // onChange={this.genreChange}
         />
       );
     });
@@ -177,15 +181,16 @@ class admin extends React.Component {
                 <fieldset className="col-xs-6">
                   <label htmlFor="genre">Genre:</label>
                   <br />
-                  {genreComponent}
+                  <select className="col-sm-12" onChange={this.genreChange}>
+                    <option>Genres</option>
+                    {genreComponent}
+                  </select>
                 </fieldset>
                 <fieldset className="col-xs-6">
                   <label htmlFor="stage">Stage:</label>
                   <br />
-                  {/* <input
-                    id="stage"
-                  /> */}
                   <StageSelect
+                    id="stage"
                     value={this.state.newArtist.stageName}
                     onChange={this.stageChange}
                   />
