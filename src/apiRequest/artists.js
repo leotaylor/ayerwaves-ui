@@ -39,4 +39,17 @@ const postArtist = (newArtist) => {
   });
 };
 
-export default {getRequest, getSingleArtist, postArtist};
+const deleteRequest = (id) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .delete(`https://ayerwavesapi.azurewebsites.net/api/artist/deleteArtist/${id}`)
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export default {getRequest, getSingleArtist, postArtist, deleteRequest};
