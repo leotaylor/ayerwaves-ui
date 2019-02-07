@@ -274,6 +274,7 @@ class admin extends React.Component {
               <button className="btn-success btn-lg">Submit Artist</button>
             </form>
           </div>
+          <button className="btn btn-success">Add Genre</button>
         </div>
       </div>
     );
