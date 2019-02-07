@@ -55,20 +55,20 @@ class genrePage extends React.Component {
       });
   }
   render () {
-    const genreNameComponent = this.state.genres.map((genre) => {
-      return (
-        <div className="row" key={genre.id}>
-          <h3>{genre.genreName}</h3>
-        </div>
-      );
-    });
+    // const genreNameComponent = this.state.genres.map((genre) => {
+    //   return (
+    //     <div className="row" key={genre.id}>
+    //       <h3>{genre.genreName}</h3>
+    //     </div>
+    //   );
+    // });
 
     return (
       <div>
-        <div className="col-sm-6 text-left">
+        {/* <div className="col-sm-6 text-left">
           {genreNameComponent}
-        </div>
-        <div className="col-sm-6 text-left">
+        </div> */}
+        <div className="col-sm-10 text-left">
           <h2 className="text-center">Add NEW Genre:</h2>
           <form onSubmit={this.formSubmit}>
             <fieldset className="col-xs-6">
@@ -83,7 +83,7 @@ class genrePage extends React.Component {
                 onChange={this.nameChange}
               />
             </fieldset>
-            <div className="row">
+            <div className="row col-xs-6">
               <button className="btn-success btn-lg">Submit Genre</button>
             </div>
           </form>

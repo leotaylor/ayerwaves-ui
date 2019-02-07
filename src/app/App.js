@@ -8,7 +8,6 @@ import Navbar from '../components/navbar/navbar';
 import Home from '../components/home/home';
 import Admin from '../components/admin/admin';
 import ArtistPage from '../components/artistPage/artistPage';
-import GenrePage from '../components/admin/genrePage/genrePage';
 
 import fbConnection from '../firebaseRequests/connection';
 
@@ -85,11 +84,6 @@ class App extends Component {
                     path='/admin'
                     authed={this.state.authed}
                     component={Admin}
-                  />
-                  <Route
-                    path='/genrePage'
-                    authed={this.state.authed}
-                    component={GenrePage}
                   />
                   <PublicRoute
                     path="/login"

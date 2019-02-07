@@ -7,6 +7,7 @@ import genreRequest from '../../apiRequest/genre';
 import stageRequest from '../../apiRequest/stage';
 import authRequest from '../../firebaseRequests/auth';
 // import {Modal} from 'react-bootstrap';
+import GenrePage from '../admin/genrePage/genrePage';
 
 const defaultArtist = {
   name: '',
@@ -274,7 +275,9 @@ class admin extends React.Component {
               <button className="btn-success btn-lg">Submit Artist</button>
             </form>
           </div>
-          <button className="btn btn-success">Add Genre</button>
+          <div className="row">
+            <GenrePage/>
+          </div>
         </div>
       </div>
     );
