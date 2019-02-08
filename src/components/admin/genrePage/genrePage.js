@@ -63,18 +63,45 @@ class genrePage extends React.Component {
 
   deleteClick = (e) => {
     const genreToDelete = e.target.id;
-    genreRequest
-      .deleteRequest(genreToDelete)
-      .then(() => {
-        this.props.updateState();
-        this.componentDidMount();
-      })
-      .catch((err) => {
-        console.error('error with delete request', err);
-      });
+    const artists = this.props.artistState;
+    const genre = e.target.value;
+    artists.forEach((artist) => {
+      if (artist.genreName !== genre) {
+        return (
+          genreRequest
+            .deleteRequest(genreToDelete)
+            .then(() => {
+              this.props.updateState();
+              this.componentDidMount();
+            })
+            .catch((err) => {
+              console.error('error with delete request', err);
+            })
+        );
+      } else {
+        return (
+          alert("no can do cowboy, the artist: " + artist.name + " is using this genre")
+        );
+      }
+    });
   }
 
   render () {
+    // const buttonComp = this.state.genres.map((genre) => {
+    //   const artists = this.props.artistState;
+    //   artists.forEach((artist) => {
+    //     if (artist.genreName === genre.genreName) {
+    //       return (
+    //         <button type="button" className="btn btn-danger btn-xs glyphicon glyphicon-trash" aria-hidden="true" value={genre.genreName} id={genre.id} onClick={this.deleteClick}disabled></button>
+    //       );
+    //     } else {
+    //       return (
+    //         <button type="button" className="btn btn-danger btn-xs glyphicon glyphicon-trash" aria-hidden="true" value={genre.genreName} id={genre.id} onClick={this.deleteClick}></button>
+    //       );
+    //     }
+    //   });
+    // });
+
     const genreNameComponent = this.state.genres.map((genre) => {
       if (
         this.state.showGenres !== false
@@ -82,7 +109,7 @@ class genrePage extends React.Component {
         return (
           <div className="row" key={genre.id}>
             <h3>{genre.genreName}</h3>
-            <button type="button" className="btn btn-danger btn-xs glyphicon glyphicon-trash" aria-hidden="true" id={genre.id} onClick={this.deleteClick}></button>
+            <button type="button" className="btn btn-danger btn-xs glyphicon glyphicon-trash" aria-hidden="true" value={genre.genreName} id={genre.id} onClick={this.deleteClick}></button>
           </div>
         );
       }
@@ -113,6 +140,7 @@ class genrePage extends React.Component {
         <button className="btn-danger btn-lg" onClick={this.showGenres}>Delete a Genre</button>
         <div className="col-sm-6 text-left">
           {genreNameComponent}
+          {/* {buttonComp} */}
         </div>
       </div>
     );

@@ -287,6 +287,7 @@ class admin extends React.Component {
           <div className="row">
             <GenrePage
               updateState={this.updateState}
+              artistState={this.state.artists}
             />
           </div>
         </div>
