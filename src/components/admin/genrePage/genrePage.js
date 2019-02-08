@@ -10,6 +10,7 @@ class genrePage extends React.Component {
   state = {
     genres: [],
     newGenre: defaultGenre,
+    showGenres: false,
   }
 
   componentDidMount = () => {
@@ -47,27 +48,48 @@ class genrePage extends React.Component {
     this.formFieldStringState('genreName', e);
   };
 
-  postGenre = (e) => {
+  postGenre = () => {
     genreRequest
       .postGenre(this.state.newGenre)
       .then(() => {
+        this.props.updateState();
         this.componentDidMount();
       });
   }
+
+  showGenres = () => {
+    this.setState({showGenres: true});
+  }
+
+  deleteClick = (e) => {
+    const genreToDelete = e.target.id;
+    genreRequest
+      .deleteRequest(genreToDelete)
+      .then(() => {
+        this.props.updateState();
+        this.componentDidMount();
+      })
+      .catch((err) => {
+        console.error('error with delete request', err);
+      });
+  }
+
   render () {
-    // const genreNameComponent = this.state.genres.map((genre) => {
-    //   return (
-    //     <div className="row" key={genre.id}>
-    //       <h3>{genre.genreName}</h3>
-    //     </div>
-    //   );
-    // });
+    const genreNameComponent = this.state.genres.map((genre) => {
+      if (
+        this.state.showGenres !== false
+      ) {
+        return (
+          <div className="row" key={genre.id}>
+            <h3>{genre.genreName}</h3>
+            <button type="button" className="btn btn-danger btn-xs glyphicon glyphicon-trash" aria-hidden="true" id={genre.id} onClick={this.deleteClick}></button>
+          </div>
+        );
+      }
+    });
 
     return (
       <div>
-        {/* <div className="col-sm-6 text-left">
-          {genreNameComponent}
-        </div> */}
         <div className="col-sm-10 text-left">
           <h2 className="text-center">Add NEW Genre:</h2>
           <form onSubmit={this.formSubmit}>
@@ -87,6 +109,10 @@ class genrePage extends React.Component {
               <button className="btn-success btn-lg">Submit Genre</button>
             </div>
           </form>
+        </div>
+        <button className="btn-danger btn-lg" onClick={this.showGenres}>Delete a Genre</button>
+        <div className="col-sm-6 text-left">
+          {genreNameComponent}
         </div>
       </div>
     );

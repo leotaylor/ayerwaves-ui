@@ -55,6 +55,10 @@ class admin extends React.Component {
       });
   }
 
+  updateState = () => {
+    this.componentDidMount();
+  };
+
   postArtist = (e) => {
     artistRequest
       .postArtist(this.state.newArtist)
@@ -147,6 +151,11 @@ class admin extends React.Component {
 
   // editArtist = (id) => {
   //   console.log(id);
+  // }
+
+  // addGenreItem = (genreToAdd) => {
+  //   this.state.genres.push(genreToAdd);
+  //   this.setState({genres: this.state.genres});
   // }
 
   render () {
@@ -276,7 +285,9 @@ class admin extends React.Component {
             </form>
           </div>
           <div className="row">
-            <GenrePage/>
+            <GenrePage
+              updateState={this.updateState}
+            />
           </div>
         </div>
       </div>

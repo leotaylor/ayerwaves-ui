@@ -26,4 +26,17 @@ const postGenre = (newGenre) => {
   });
 };
 
-export default {getGenre, postGenre};
+const deleteRequest = (id) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .delete(`https://ayerwavesapi.azurewebsites.net/api/genre/deletegenre/${id}`)
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export default {getGenre, postGenre, deleteRequest};
