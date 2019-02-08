@@ -17,6 +17,9 @@ class genrePage extends React.Component {
     genreRequest
       .getGenre()
       .then((genres) => {
+        genres.forEach(genres => {
+          genres.showEdit = '';
+        });
         this.setState({genres});
       })
       .catch((err) => {
@@ -59,6 +62,13 @@ class genrePage extends React.Component {
 
   showGenres = () => {
     this.setState({showGenres: true});
+  }
+
+  showEdit = (e) => {
+    const tempGenre = [...this.state.genres];
+    tempGenre.showEdit = e.target.id;
+    console.log(tempGenre.showEdit);
+    this.setState({ genres: tempGenre });
   }
 
   deleteClick = (e) => {
@@ -110,9 +120,10 @@ class genrePage extends React.Component {
           <div className="row" key={genre.id}>
             <h3>{genre.genreName}</h3>
             <button type="button" className="btn btn-danger btn-xs glyphicon glyphicon-trash" aria-hidden="true" value={genre.genreName} id={genre.id} onClick={this.deleteClick}></button>
+            <button type="button" className="btn btn-success btn-xs glyphicon glyphicon-pencil" aria-hidden="true" value={genre.genreName} id={genre.id} onClick={this.showEdit}></button>
           </div>
         );
-      }
+      } else return null;
     });
 
     return (
@@ -137,7 +148,7 @@ class genrePage extends React.Component {
             </div>
           </form>
         </div>
-        <button className="btn-danger btn-lg" onClick={this.showGenres}>Delete a Genre</button>
+        <button className="btn-danger btn-lg" onClick={this.showGenres}>Delete/Edit a Genre</button>
         <div className="col-sm-6 text-left">
           {genreNameComponent}
           {/* {buttonComp} */}
