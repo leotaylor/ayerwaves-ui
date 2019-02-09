@@ -6,6 +6,8 @@ import StageSelect from './StageSelect';
 import genreRequest from '../../apiRequest/genre';
 import stageRequest from '../../apiRequest/stage';
 import authRequest from '../../firebaseRequests/auth';
+// import {Modal} from 'react-bootstrap';
+import GenrePage from '../admin/genrePage/genrePage';
 
 const defaultArtist = {
   name: '',
@@ -23,6 +25,7 @@ class admin extends React.Component {
     newArtist: defaultArtist,
     genres: [],
     stages: [],
+    // show: false,
   }
 
   componentDidMount () {
@@ -51,6 +54,10 @@ class admin extends React.Component {
         console.error('error with getting genres', err);
       });
   }
+
+  updateState = () => {
+    this.componentDidMount();
+  };
 
   postArtist = (e) => {
     artistRequest
@@ -127,18 +134,40 @@ class admin extends React.Component {
       });
   }
 
-  render () {
+  // constructor (props, context) {
+  //   super(props, context);
 
-    const editArtist = (id) => {
-      console.log(id);
-    };
+  //   this.handleShow = this.handleShow.bind(this);
+  //   this.handleClose = this.handleClose.bind(this);
+  // }
+
+  // handleShow () {
+  //   this.setState({ show: true });
+  // }
+
+  // handleClose () {
+  //   this.setState({ show: false });
+  // }
+
+  // editArtist = (id) => {
+  //   console.log(id);
+  // }
+
+  // addGenreItem = (genreToAdd) => {
+  //   this.state.genres.push(genreToAdd);
+  //   this.setState({genres: this.state.genres});
+  // }
+
+  render () {
 
     const artistComponent = this.state.artists.map((artist) => {
       return (
         <div className="row" key={artist.id}>
-          <p className="col-sm-6" onClick={(() => editArtist(artist))}>{artist.name}</p>
+          <p className="col-sm-6">{artist.name}</p>
           <button type="button" className="btn btn-danger btn-xs glyphicon glyphicon-trash" aria-hidden="true" id={artist.id} onClick={this.deleteClick}>
           </button>
+          {/* <button type="button" className="btn btn-success btn-xs glyphicon glyphicon-pencil" aria-hidden="true" id={artist.id} onClick={this.handleShow}>
+          </button> */}
         </div>
       );
     });
@@ -233,7 +262,7 @@ class admin extends React.Component {
                     className="col-xs-12"
                     type="text"
                     id="description"
-                    placeholder="Lovely one bedroom house"
+                    placeholder="Description..."
                     value={this.state.newArtist.description}
                     onChange={this.descChange}
                   />
@@ -254,6 +283,12 @@ class admin extends React.Component {
               </div>
               <button className="btn-success btn-lg">Submit Artist</button>
             </form>
+          </div>
+          <div className="row">
+            <GenrePage
+              updateState={this.updateState}
+              artistState={this.state.artists}
+            />
           </div>
         </div>
       </div>
