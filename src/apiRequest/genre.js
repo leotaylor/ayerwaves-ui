@@ -26,6 +26,19 @@ const postGenre = (newGenre) => {
   });
 };
 
+const putRequest = (genreId, updatedGenre) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .put(`https://ayerwavesapi.azurewebsites.net/api/genre/updateGenre/${genreId}`, updatedGenre)
+      .then(res => {
+        resolve(res.data);
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
+};
+
 const deleteRequest = (id) => {
   return new Promise((resolve, reject) => {
     axios
@@ -39,4 +52,4 @@ const deleteRequest = (id) => {
   });
 };
 
-export default {getGenre, postGenre, deleteRequest};
+export default {getGenre, postGenre, putRequest, deleteRequest};
