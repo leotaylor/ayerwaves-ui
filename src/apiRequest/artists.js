@@ -39,6 +39,19 @@ const postArtist = (newArtist) => {
   });
 };
 
+const putRequest = (artistId, updatedArtist) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .put(`https://ayerwavesapi.azurewebsites.net/api/artist/updateArtist/${artistId}`, updatedArtist)
+      .then(res => {
+        resolve(res.data);
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
+};
+
 const deleteRequest = (id) => {
   return new Promise((resolve, reject) => {
     axios
@@ -52,4 +65,4 @@ const deleteRequest = (id) => {
   });
 };
 
-export default {getRequest, getSingleArtist, postArtist, deleteRequest};
+export default {getRequest, getSingleArtist, postArtist, putRequest ,deleteRequest};
