@@ -8,6 +8,7 @@ import stageRequest from '../../apiRequest/stage';
 import authRequest from '../../firebaseRequests/auth';
 // import {Modal} from 'react-bootstrap';
 import GenrePage from '../admin/genrePage/genrePage';
+import StagePage from '../admin/stagePage/stagePage';
 
 const defaultArtist = {
   name: '',
@@ -447,6 +448,13 @@ class admin extends React.Component {
           </div>
           <div className="row">
             <GenrePage
+              updateState={this.updateState}
+              artistState={this.state.artists}
+            />
+          </div>
+          <div className="row">
+            <StagePage
+              details={this.state.stages}
               updateState={this.updateState}
               artistState={this.state.artists}
             />
