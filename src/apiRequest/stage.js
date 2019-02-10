@@ -26,4 +26,17 @@ const postStage = (newStage) => {
   });
 };
 
-export default {getStage, postStage};
+const deleteStage = (id) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .delete(`https://ayerwavesapi.azurewebsites.net/api/stage/deletestage/${id}`)
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export default {getStage, postStage, deleteStage};
