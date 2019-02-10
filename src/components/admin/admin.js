@@ -23,9 +23,10 @@ class admin extends React.Component {
   state = {
     artists: [],
     newArtist: defaultArtist,
+    editArtist: defaultArtist,
     genres: [],
     stages: [],
-    // show: false,
+    showArtistEdit: 0,
   }
 
   componentDidMount () {
@@ -58,6 +59,8 @@ class admin extends React.Component {
   updateState = () => {
     this.componentDidMount();
   };
+
+  // POST New Artists
 
   postArtist = (e) => {
     artistRequest
@@ -122,6 +125,83 @@ class admin extends React.Component {
     }
   }
 
+  // Edit Artists
+
+  editArtist = (e) => {
+    const showEditId = e.target.id * 1;
+    this.setState({showArtistEdit: showEditId});
+  }
+
+  editformSubmit = (e) => {
+    const {editArtist} = this.state;
+    editArtist.uid = authRequest.getUid();
+    const aId = e.target.id * 1;
+    e.preventDefault();
+    if (
+      editArtist.name &&
+      editArtist.day &&
+      editArtist.genreName &&
+      editArtist.stageName &&
+      editArtist.description &&
+      editArtist.imageLink
+    ) {
+      this.putArtist(aId, this.state.editArtist);
+      this.setState({editArtist: defaultArtist});
+      this.setState({showArtistEdit: 0});
+    } else {
+      alert('ugh');
+    }
+  }
+
+  putArtist = (id, update) => {
+    artistRequest
+      .putRequest(id, update)
+      .then (() => {
+        this.componentDidMount();
+      })
+      .catch((err) => {
+        console.error('error with update request', err);
+      });
+  }
+
+  editFormFieldStringState = (name, e) => {
+    const tempArtist = {...this.state.editArtist};
+    tempArtist[name] = e.target.value;
+    this.setState({editArtist: tempArtist});
+  }
+
+  editFormFieldNumberState = (name, e) => {
+    const tempArtist = {...this.state.editArtist};
+    tempArtist[name] = e.target.value * 1;
+    this.setState({editArtist: tempArtist});
+  }
+
+  editNameChange = (e) => {
+    this.editFormFieldStringState('name', e);
+  };
+
+  editDayChange = (e) => {
+    this.editFormFieldStringState('day', e);
+  };
+
+  editGenreChange = (e) => {
+    this.editFormFieldNumberState('genreName', e);
+  };
+
+  editStageChange = (e) => {
+    this.editFormFieldNumberState('stageName', e);
+  };
+
+  editDescChange = (e) => {
+    this.editFormFieldStringState('description', e);
+  };
+
+  editImageChange = (e) => {
+    this.editFormFieldStringState('imageLink', e);
+  };
+
+  // Delete Artists
+
   deleteClick = (e) => {
     const artistToDelete = e.target.id;
     artistRequest
@@ -134,40 +214,121 @@ class admin extends React.Component {
       });
   }
 
-  // constructor (props, context) {
-  //   super(props, context);
-
-  //   this.handleShow = this.handleShow.bind(this);
-  //   this.handleClose = this.handleClose.bind(this);
-  // }
-
-  // handleShow () {
-  //   this.setState({ show: true });
-  // }
-
-  // handleClose () {
-  //   this.setState({ show: false });
-  // }
-
-  // editArtist = (id) => {
-  //   console.log(id);
-  // }
-
-  // addGenreItem = (genreToAdd) => {
-  //   this.state.genres.push(genreToAdd);
-  //   this.setState({genres: this.state.genres});
-  // }
-
   render () {
 
     const artistComponent = this.state.artists.map((artist) => {
-      return (
+      const showArtist = this.state.showArtistEdit;
+      if (showArtist !== artist.id) {
+        return (
+          <div className="row" key={artist.id}>
+            <p className="col-sm-6" id={artist.id} onClick={this.editArtist}>{artist.name}</p>
+            <button type="button" className="btn btn-danger btn-xs glyphicon glyphicon-trash" aria-hidden="true" id={artist.id} onClick={this.deleteClick}></button>
+          </div>
+        );
+      } else return (
         <div className="row" key={artist.id}>
-          <p className="col-sm-6">{artist.name}</p>
-          <button type="button" className="btn btn-danger btn-xs glyphicon glyphicon-trash" aria-hidden="true" id={artist.id} onClick={this.deleteClick}>
-          </button>
-          {/* <button type="button" className="btn btn-success btn-xs glyphicon glyphicon-pencil" aria-hidden="true" id={artist.id} onClick={this.handleShow}>
-          </button> */}
+          <div className="col-xs-8 col-xs-offset-2">
+            <h2 className="text-center">Edit Artist:</h2>
+            <form id={artist.id} onSubmit={this.editformSubmit}>
+              <div className="row">
+                <fieldset className="col-xs-6">
+                  <label className="text-left" htmlFor="name">Name:</label>
+                  <br />
+                  <input
+                    className="col-xs-12"
+                    type="text"
+                    id="name"
+                    // placeholder={artist.name}
+                    // value={this.state.editArtist.name}
+                    defaultValue={artist.name}
+                    onChange={this.editNameChange}
+                  />
+                </fieldset>
+
+                <fieldset className="col-xs-6">
+                  <label htmlFor="day">Day</label>
+                  <br />
+                  <input
+                    className="col-xs-12"
+                    type="text"
+                    id="day"
+                    // placeholder={artist.day}
+                    // value={this.state.editArtist.day}
+                    defaultValue={artist.day}
+                    onChange={this.editDayChange}
+                  />
+                </fieldset>
+
+              </div>
+              <div className="row">
+                <fieldset className="col-xs-6">
+                  <label htmlFor="genre">Genre:</label>
+                  <br />
+                  <select className="col-sm-12" onChange={this.editGenreChange}>
+                    <option>Genres</option>
+                    {this.state.genres.map((genre) => {
+                      return (
+                        <GenreSelect
+                          details={genre}
+                          key={genre.id}
+                          type="number"
+                          value={genre.id}
+                        />
+                      );
+                    })}
+                  </select>
+                </fieldset>
+                <fieldset className="col-xs-6">
+                  <label htmlFor="stage">Stage:</label>
+                  <br />
+                  <select className="col-sm-12" onChange={this.editStageChange}>
+                    <option>Stage</option>
+                    {this.state.stages.map((stage) => {
+                      return (
+                        <StageSelect
+                          details={stage}
+                          key={stage.id}
+                          type="number"
+                          value={stage.id}
+                        />
+                      );
+                    })}
+                  </select>
+                </fieldset>
+              </div>
+
+              <div className="row">
+                <fieldset className="col-xs-6">
+                  <label htmlFor="description">Description:</label>
+                  <br />
+                  <input
+                    className="col-xs-12"
+                    type="text"
+                    id="description"
+                    // placeholder="Description..."
+                    // value={this.state.editArtist.description}
+                    defaultValue={artist.description}
+                    onChange={this.editDescChange}
+                  />
+                </fieldset>
+
+                <fieldset className="col-xs-6">
+                  <label htmlFor="imageUrl">Image Url:</label>
+                  <br />
+                  <input
+                    className="col-xs-12"
+                    type="text"
+                    id="imageUrl"
+                    // placeholder={artist.imageLink}
+                    // value={this.state.editArtist.imageLink}
+                    onChange={this.editImageChange}
+                    defaultValue={artist.imageLink}
+                  />
+                </fieldset>
+              </div>
+              <button className="btn-success btn-lg">Submit Changes</button>
+            </form>
+          </div>
         </div>
       );
     });
