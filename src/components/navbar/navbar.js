@@ -8,7 +8,7 @@ import './navbar.css';
 import authRequests from '../../firebaseRequests/auth';
 import ArtistSelect from '../navbar/artistSelect/ArtistSelect';
 
-import createHistory from 'history/createBrowserHistory';
+// import createHistory from 'history/createBrowserHistory';
 
 class Navbar extends React.Component {
 
@@ -27,9 +27,16 @@ class Navbar extends React.Component {
       });
   }
 
+  // singleArtist = (e) => {
+  //   const Aid = e.target.value * 1;
+  //   history.push(`/artist/${Aid}`);
+  // };
+
   singleArtist = (e) => {
     const Aid = e.target.value * 1;
-    history.push(`/artist/${Aid}`);
+    this.props.history.push(`/artist/${Aid}`);
+    console.log(Aid);
+    console.log(this.props.history);
   };
 
   render () {
@@ -53,6 +60,7 @@ class Navbar extends React.Component {
           type="text"
           value={artist.id}
           id={artist.id}
+          // onChange={this.singleArtist}
         />
       );
     });
@@ -93,4 +101,4 @@ class Navbar extends React.Component {
 };
 
 export default Navbar;
-export const history = createHistory();
+// export const history = createHistory();
