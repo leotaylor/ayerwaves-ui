@@ -6,6 +6,9 @@ import artistRequest from '../../apiRequest/artists';
 import './navbar.css';
 
 import authRequests from '../../firebaseRequests/auth';
+import ArtistSelect from '../navbar/artistSelect/ArtistSelect';
+
+import createHistory from 'history/createBrowserHistory';
 
 class Navbar extends React.Component {
 
@@ -24,6 +27,11 @@ class Navbar extends React.Component {
       });
   }
 
+  singleArtist = (e) => {
+    const Aid = e.target.value * 1;
+    history.push(`/artist/${Aid}`);
+  };
+
   render () {
     const {authed, logout} = this.props;
     const logoutClickEvent = (e) => {
@@ -31,13 +39,21 @@ class Navbar extends React.Component {
       logout();
     };
 
-    const singleArtist = (id) => {
-      this.props.history.push(`/artist/${id}`);
-    };
+    // const artistComponent = this.state.artists.map((artist) => {
+    //   return (
+    //     <option key={artist.id} value={artist.id} onChange={() => singleArtist(artist.id)}>{artist.name}</option>
+    //   );
+    // });
 
     const artistComponent = this.state.artists.map((artist) => {
       return (
-        <option key={artist.id} value={artist.id} onSelect={() => singleArtist(artist.id)}>{artist.name}</option>
+        <ArtistSelect
+          details={artist}
+          key={artist.id}
+          type="text"
+          value={artist.id}
+          id={artist.id}
+        />
       );
     });
 
@@ -58,8 +74,8 @@ class Navbar extends React.Component {
               ) : (
                 <ul className="nav navbar-nav navbar-right">
                   <li>
-                    <select>
-                      <option value=''>Artists</option>
+                    <select onChange={this.singleArtist}>
+                      <option>Artists</option>
                       {artistComponent}
                     </select>
                   </li>
@@ -77,3 +93,4 @@ class Navbar extends React.Component {
 };
 
 export default Navbar;
+export const history = createHistory();
