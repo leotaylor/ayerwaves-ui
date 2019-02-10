@@ -26,6 +26,19 @@ const postStage = (newStage) => {
   });
 };
 
+const putStage = (stageId, updatedStage) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .put(`https://ayerwavesapi.azurewebsites.net/api/stage/updateStage/${stageId}`, updatedStage)
+      .then(res => {
+        resolve(res.data);
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
+};
+
 const deleteStage = (id) => {
   return new Promise((resolve, reject) => {
     axios
@@ -39,4 +52,4 @@ const deleteStage = (id) => {
   });
 };
 
-export default {getStage, postStage, deleteStage};
+export default {getStage, postStage, putStage, deleteStage};

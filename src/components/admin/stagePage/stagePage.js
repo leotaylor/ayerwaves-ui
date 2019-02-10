@@ -52,7 +52,56 @@ class stagePage extends React.Component {
       });
   }
 
-  // DELETE GENRE
+  // EDIT GENRE NAME
+
+    changeNameClick = (e) => {
+      const showEditId = e.target.id * 1;
+      this.setState({showEdit: showEditId});
+    }
+
+    editNameChange = (e) => {
+      this.oldformFieldStringState('stageName', e);
+    }
+
+    oldformFieldStringState = (name, e) => {
+      const tempStage = {...this.state.oldStage};
+      tempStage[name] = e.target.value;
+      this.setState({oldStage: tempStage});
+    }
+
+    pressEnter = (e) => {
+      const gId = e.target.id * 1;
+      if (e.key === 'Enter') {
+        this.editFormSubmit(gId);
+      }
+    }
+
+    editFormSubmit = (gId) => {
+      const {oldStage} = this.state;
+      oldStage.uid = authRequest.getUid();
+      if (
+        oldStage.stageName
+      ) {
+        this.putRequest(gId, this.state.oldStage);
+        this.setState({oldStage: defaultStage});
+        this.setState({showEdit: 0});
+      } else {
+        alert('ugh');
+      }
+    }
+
+    putRequest = (id, update) => {
+      stageRequest
+        .putStage(id, update)
+        .then (() => {
+          this.props.updateState();
+        })
+        .catch((err) => {
+          console.error('error with update request', err);
+        });
+    }
+
+    // DELETE GENRE
 
     deleteClick = (e) => {
       const stageToDelete = e.target.id;
