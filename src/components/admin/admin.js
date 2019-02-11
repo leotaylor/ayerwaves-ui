@@ -365,14 +365,14 @@ class admin extends React.Component {
 
     return (
       <div className="admin">
-        <h1>Admin</h1>
-        <div className="col-sm-6 text-left">
+        <h1>Welcome Ayerwaves Admin</h1>
+        <div className="col-sm-4 text-left">
           <h1>Artists</h1>
           <h4>(Click name to edit)</h4>
           {artistComponent}
         </div>
 
-        <div className="col-sm-6">
+        <div className="col-sm-4">
           <div className="col-xs-8 col-xs-offset-2">
             <h2 className="text-center">Add NEW Artist:</h2>
             <form onSubmit={this.formSubmit}>
@@ -453,6 +453,9 @@ class admin extends React.Component {
               <button className="btn-success btn-lg">Submit Artist</button>
             </form>
           </div>
+
+        </div>
+        <div className="col-sm-4">
           <div className="row">
             <GenrePage
               updateState={this.updateState}
