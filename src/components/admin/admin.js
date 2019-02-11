@@ -133,6 +133,10 @@ class admin extends React.Component {
     this.setState({showArtistEdit: showEditId});
   }
 
+  hideArtists = () => {
+    this.setState({showArtistEdit: 0});
+  }
+
   editformSubmit = (e) => {
     const {editArtist} = this.state;
     editArtist.uid = authRequest.getUid();
@@ -228,7 +232,7 @@ class admin extends React.Component {
         );
       } else return (
         <div className="row" key={artist.id}>
-          <div className="col-xs-8 col-xs-offset-2">
+          <div className="col-xs-8">
             <h2 className="text-center">Edit Artist:</h2>
             <form id={artist.id} onSubmit={this.editformSubmit}>
               <div className="row">
@@ -327,9 +331,12 @@ class admin extends React.Component {
                   />
                 </fieldset>
               </div>
-              <button className="btn-success btn-lg">Submit Changes</button>
+              <div className="text-center">
+                <button className="btn-success btn-lg">Submit Changes</button>
+              </div>
             </form>
           </div>
+          <button className="btn btn-info" onClick={this.hideArtists}>Hide</button>
         </div>
       );
     });

@@ -116,6 +116,10 @@ class genrePage extends React.Component {
     this.setState({showGenres: true});
   }
 
+  hideGenres = () => {
+    this.setState({showGenres: false});
+  }
+
   // DELETE GENRE
 
   deleteClick = (e) => {
@@ -145,16 +149,21 @@ class genrePage extends React.Component {
 
   render () {
 
+    const showGenres = this.state.showGenres;
+
     const buttonComponent = (genre) => {
       const showEdit = this.state.showEdit;
       if (showEdit !== genre.id) {
         return (
-          <h3 id={genre.id} onClick={this.changeNameClick}>{genre.genreName}</h3>
+          <div>
+            <h3 className="col-xs-9" id={genre.id} onClick={this.changeNameClick}>{genre.genreName}</h3>
+            <button type="button" className="btn btn-danger btn-sm glyphicon glyphicon-trash can" aria-hidden="true" value={genre.genreName} id={genre.id} onClick={this.deleteClick}></button>
+          </div>
         );
       } else {
         return (
-          <div>
-            <input type="text" className="form-control" id={genre.id} onChange={this.editNameChange} onKeyPress={this.pressEnter} placeholder="Rename" aria-describedby="basic-addon1"/>
+          <div className="col-sm-11">
+            <input type="text" className="form-control gsInput" defaultValue={genre.genreName} id={genre.id} onChange={this.editNameChange} onKeyPress={this.pressEnter} aria-describedby="basic-addon1"/>
           </div>
         );
       }
@@ -167,7 +176,6 @@ class genrePage extends React.Component {
         return (
           <div className="row" key={genre.id}>
             {buttonComponent(genre)}
-            <button type="button" className="btn btn-danger btn-xs glyphicon glyphicon-trash" aria-hidden="true" value={genre.genreName} id={genre.id} onClick={this.deleteClick}></button>
           </div>
         );
       } else return null;
@@ -175,14 +183,14 @@ class genrePage extends React.Component {
 
     return (
       <div>
-        <div className="col-sm-10 text-left">
-          <h2 className="text-center">Add NEW Genre:</h2>
-          <form onSubmit={this.formSubmit}>
+        <div className="col-sm-8 col-sm-offset-2 text-left">
+          <h2 className="text-left">Add New Genre:</h2>
+          <form className="row" onSubmit={this.formSubmit}>
             <fieldset className="col-xs-6">
               <label className="text-left" htmlFor="genreName">Genre Name:</label>
               <br />
               <input
-                className="col-xs-12"
+                className="col-xs-12 "
                 type="text"
                 id="genreName"
                 placeholder="Genre Name"
@@ -194,9 +202,14 @@ class genrePage extends React.Component {
               <button className="btn-success btn-lg">Submit Genre</button>
             </div>
           </form>
+          {showGenres ? (
+            <button className="btn btn-info" onClick={this.hideGenres}>Hide</button>
+          ) : (
+            <div className="col-xs-6 row">
+              <button className="btn-danger btn-md" onClick={this.showGenres}>Delete/Edit A Genre</button>
+            </div>) }
         </div>
-        <button className="btn-danger btn-lg" onClick={this.showGenres}>Delete A Genre</button>
-        <div className="col-sm-6 text-left">
+        <div className="col-sm-8 col-sm-offset-2 text-left">
           {genreNameComponent}
         </div>
       </div>
