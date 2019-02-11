@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import artistRequest from '../../apiRequest/artists';
 // import { NavDropdown } from 'react-bootstrap';
+import { withRouter } from "react-router-dom";
 
 import './navbar.css';
 
@@ -28,16 +29,22 @@ class Navbar extends React.Component {
   }
 
   // singleArtist = (e) => {
+  //   const history = createHistory();
   //   const Aid = e.target.value * 1;
   //   history.push(`/artist/${Aid}`);
   // };
 
   singleArtist = (e) => {
-    const Aid = e.target.value;
-    // this.props.history.push(`/artist/${Aid}`);
-    console.log(Aid);
-    console.log(this.props.history);
+    const Aid = e.target.value * 1;
+    this.props.history.push(`/artist/${Aid}`);
   };
+
+  // singleArtist = (e) => {
+  //   const Aid = e.target.value;
+  //   this.props.history.push(`/artist/${Aid}`);
+  //   console.log(Aid);
+  //   console.log(this.props.history);
+  // };
 
   render () {
     const {authed, logout} = this.props;
@@ -75,7 +82,7 @@ class Navbar extends React.Component {
                 </ul>
               ) : (
                 <ul className="nav navbar-nav navbar-right">
-                  <li>
+                  <li className='dropdown'>
                     {/* <Link to={this.singleArtist}> */}
                     <select onChange={this.singleArtist}>
                       <option>Artists</option>
@@ -97,5 +104,5 @@ class Navbar extends React.Component {
   }
 };
 
-export default Navbar;
+export default withRouter(Navbar);
 // export const history = createHistory();

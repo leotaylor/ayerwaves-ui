@@ -6,7 +6,6 @@ import StageSelect from './StageSelect';
 import genreRequest from '../../apiRequest/genre';
 import stageRequest from '../../apiRequest/stage';
 import authRequest from '../../firebaseRequests/auth';
-// import {Modal} from 'react-bootstrap';
 import GenrePage from '../admin/genrePage/genrePage';
 import StagePage from '../admin/stagePage/stagePage';
 

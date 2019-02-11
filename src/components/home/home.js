@@ -33,7 +33,7 @@ class home extends React.Component {
     return (
       <div className="home">
         {artistComponent}
-        <img src={require('../../images/ayerUFO.JPG')} alt="ufo"></img>
+        <img className="ufo" src={require('../../images/ayerUFO.JPG')} alt="ufo"></img>
         {/* <div>
           {artistComponent}
         </div> */}
