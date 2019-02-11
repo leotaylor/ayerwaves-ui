@@ -34,9 +34,9 @@ class Navbar extends React.Component {
 
   singleArtist = (e) => {
     const Aid = e.target.value * 1;
-    this.props.history.push(`/artist/${Aid}`);
+    // this.props.history.push(`/artist/${Aid}`);
     console.log(Aid);
-    console.log(this.props.history);
+    console.log(this.props.route);
   };
 
   render () {

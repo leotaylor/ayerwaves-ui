@@ -75,16 +75,17 @@ class App extends Component {
       <div className="App">
         <BrowserRouter>
           <div>
-            {/* <Navbar
+            <Navbar
+              authed={this.state.authed}
+              logout={this.logout}
+              component={Navbar}
+              route={this}
+            />
+            {/* <Route
               authed={this.state.authed}
               logout={this.logout}
               component={Navbar}
             /> */}
-            <Route
-              authed={this.state.authed}
-              logout={this.logout}
-              component={Navbar}
-            />
             <div className="container">
               <div className="row">
                 <Switch>

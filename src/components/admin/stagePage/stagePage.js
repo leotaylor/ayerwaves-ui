@@ -129,17 +129,21 @@ class stagePage extends React.Component {
 
     render () {
       // const {details} = this.props;
+      const showStages = this.state.showStages;
 
       const buttonComponent = (stage) => {
         const showEdit = this.state.showEdit;
         if (showEdit !== stage.id) {
           return (
-            <h3 id={stage.id} onClick={this.changeNameClick}>{stage.stageName}</h3>
+            <div>
+              <h3 className="col-xs-9" id={stage.id} onClick={this.changeNameClick}>{stage.stageName}</h3>
+              <button type="button" className="btn btn-danger btn-sm glyphicon glyphicon-trash can" aria-hidden="true" value={stage.stageName} id={stage.id} onClick={this.deleteClick}></button>
+            </div>
           );
         } else {
           return (
             <div>
-              <input type="text" className="form-control" id={stage.id} onChange={this.editNameChange} onKeyPress={this.pressEnter} placeholder="Rename" aria-describedby="basic-addon1"/>
+              <input type="text" defaultValue={stage.stageName} className="form-control" id={stage.id} onChange={this.editNameChange} onKeyPress={this.pressEnter} placeholder="Rename" aria-describedby="basic-addon1"/>
             </div>
           );
         }
@@ -152,7 +156,6 @@ class stagePage extends React.Component {
           return (
             <div className="row" key={stage.id}>
               {buttonComponent(stage)}
-              <button type="button" className="btn btn-danger btn-xs glyphicon glyphicon-trash" aria-hidden="true" value={stage.stageName} id={stage.id} onClick={this.deleteClick}></button>
             </div>
           );
         } else return null;
@@ -160,9 +163,9 @@ class stagePage extends React.Component {
 
       return (
         <div>
-          <div className="col-sm-10 text-left">
-            <h2 className="text-center">Add NEW Stage:</h2>
-            <form onSubmit={this.formSubmit}>
+          <div className="col-sm-12 text-left">
+            <h2 className="text-left">Add NEW Stage:</h2>
+            <form className="row" onSubmit={this.formSubmit}>
               <fieldset className="col-xs-6">
                 <label className="text-left" htmlFor="stageName">Stage Name:</label>
                 <br />
@@ -179,9 +182,14 @@ class stagePage extends React.Component {
                 <button className="btn-success btn-lg">Submit Stage</button>
               </div>
             </form>
+            {showStages ? (
+              null
+            ) : (
+              <div className="col-xs-6 row">
+                <button className="btn-danger btn-md" onClick={this.showStages}>Delete/Edit A Stage</button>
+              </div>) }
           </div>
-          <button className="btn-danger btn-lg" onClick={this.showStages}>Delete/Edit A Stage</button>
-          <div className="col-sm-6 text-left">
+          <div className="container col-sm-6 text-left">
             {stageNameComponent}
           </div>
         </div>
