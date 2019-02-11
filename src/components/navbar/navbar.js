@@ -33,10 +33,10 @@ class Navbar extends React.Component {
   // };
 
   singleArtist = (e) => {
-    const Aid = e.target.value * 1;
+    const Aid = e.target.value;
     // this.props.history.push(`/artist/${Aid}`);
     console.log(Aid);
-    console.log(this.props.route);
+    console.log(this.props.history);
   };
 
   render () {
@@ -45,12 +45,6 @@ class Navbar extends React.Component {
       authRequests.logoutUser();
       logout();
     };
-
-    // const artistComponent = this.state.artists.map((artist) => {
-    //   return (
-    //     <option key={artist.id} value={artist.id} onChange={() => singleArtist(artist.id)}>{artist.name}</option>
-    //   );
-    // });
 
     const artistComponent = this.state.artists.map((artist) => {
       return (
@@ -70,7 +64,7 @@ class Navbar extends React.Component {
         <nav className="navbar navbar-inverse">
           <div className="container-fluid">
             <div className="navbar-header">
-              <Link to="/" className="navbar-brand">Ayerwaves</Link>
+              <Link to="/" className="navbar-brand" onClick={logoutClickEvent}>Ayerwaves</Link>
             </div>
             {
               authed ? (
@@ -82,10 +76,13 @@ class Navbar extends React.Component {
               ) : (
                 <ul className="nav navbar-nav navbar-right">
                   <li>
+                    {/* <Link to={this.singleArtist}> */}
                     <select onChange={this.singleArtist}>
                       <option>Artists</option>
                       {artistComponent}
                     </select>
+                    {/* </Link> */}
+
                   </li>
                   <li>
                     <Link to="/admin">Admin</Link>

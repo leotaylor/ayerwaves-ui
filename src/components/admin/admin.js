@@ -141,7 +141,7 @@ class admin extends React.Component {
     const {editArtist} = this.state;
     editArtist.uid = authRequest.getUid();
     const aId = e.target.id * 1;
-    e.preventDefault();
+    // e.preventDefault();
     if (
       editArtist.name &&
       editArtist.day &&

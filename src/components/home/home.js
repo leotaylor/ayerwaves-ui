@@ -26,17 +26,17 @@ class home extends React.Component {
 
     const artistComponent = this.state.artists.map((artist) => {
       return (
-        <button className="btn-danger" key={artist.id} value={artist.id} onClick={() => singleArtist(artist.id)}>{artist.name}</button>
+        <button className="btn-info btn-lg bandbtn" key={artist.id} value={artist.id} onClick={() => singleArtist(artist.id)}>{artist.name}</button>
       );
     });
 
     return (
       <div className="home">
-        <h1>Home</h1>
-        <div>
+        {artistComponent}
+        <img src={require('../../images/ayerUFO.JPG')} alt="ufo"></img>
+        {/* <div>
           {artistComponent}
-        </div>
-
+        </div> */}
       </div>
     );
   }
