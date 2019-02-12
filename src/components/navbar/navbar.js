@@ -39,13 +39,6 @@ class Navbar extends React.Component {
     this.props.history.push(`/artist/${Aid}`);
   };
 
-  // singleArtist = (e) => {
-  //   const Aid = e.target.value;
-  //   this.props.history.push(`/artist/${Aid}`);
-  //   console.log(Aid);
-  //   console.log(this.props.history);
-  // };
-
   render () {
     const {authed, logout} = this.props;
     const logoutClickEvent = (e) => {
@@ -89,7 +82,6 @@ class Navbar extends React.Component {
                       {artistComponent}
                     </select>
                     {/* </Link> */}
-
                   </li>
                   <li>
                     <Link to="/admin">Admin</Link>
