@@ -58,11 +58,6 @@ class stagePage extends React.Component {
 
   // EDIT GENRE NAME
 
-  // changeNameClick = (e) => {
-  //   const showEditId = e.target.id * 1;
-  //   this.setState({showEdit: showEditId});
-  // }
-
     changeNameClick = (id, stage) => {
       const showEditId = id * 1;
       this.setState({showEdit: showEditId});

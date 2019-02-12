@@ -63,9 +63,15 @@ class genrePage extends React.Component {
 
   // EDIT GENRE NAME
 
-  changeNameClick = (e) => {
-    const showEditId = e.target.id * 1;
+  // changeNameClick = (e) => {
+  //   const showEditId = e.target.id * 1;
+  //   this.setState({showEdit: showEditId});
+  // }
+
+  changeNameClick = (id, genre) => {
+    const showEditId = id * 1;
     this.setState({showEdit: showEditId});
+    this.setState({oldGenre: genre});
   }
 
   editNameChange = (e) => {
@@ -156,7 +162,7 @@ class genrePage extends React.Component {
       if (showEdit !== genre.id) {
         return (
           <div>
-            <h3 className="col-xs-9" id={genre.id} onClick={this.changeNameClick}>{genre.genreName}</h3>
+            <h3 className="col-xs-9" id={genre.id} onClick={() => this.changeNameClick(genre.id, genre)}>{genre.genreName}</h3>
             <button type="button" className="btn btn-danger btn-sm glyphicon glyphicon-trash can" aria-hidden="true" value={genre.genreName} id={genre.id} onClick={this.deleteClick}></button>
           </div>
         );
