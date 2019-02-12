@@ -8,7 +8,7 @@ class artistPage extends React.Component {
     singleArtists: [],
   }
 
-  componentDidUpdate () {
+  loadData () {
     const artistId = this.props.match.params.id;
     artistRequest
       .getSingleArtist(artistId)
@@ -18,6 +18,14 @@ class artistPage extends React.Component {
       .catch((err) => {
         console.error('error with getting artist', err);
       });
+  }
+
+  componentDidMount () {
+    this.loadData();
+  }
+
+  componentDidUpdate () {
+    this.loadData();
   }
 
   render () {

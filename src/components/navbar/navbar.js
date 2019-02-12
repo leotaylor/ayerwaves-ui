@@ -9,8 +9,6 @@ import './navbar.css';
 import authRequests from '../../firebaseRequests/auth';
 import ArtistSelect from '../navbar/artistSelect/ArtistSelect';
 
-// import createHistory from 'history/createBrowserHistory';
-
 class Navbar extends React.Component {
 
   state = {
@@ -27,12 +25,6 @@ class Navbar extends React.Component {
         console.error('error with getting artist', err);
       });
   }
-
-  // singleArtist = (e) => {
-  //   const history = createHistory();
-  //   const Aid = e.target.value * 1;
-  //   history.push(`/artist/${Aid}`);
-  // };
 
   singleArtist = (e) => {
     const Aid = e.target.value * 1;
@@ -97,4 +89,3 @@ class Navbar extends React.Component {
 };
 
 export default withRouter(Navbar);
-// export const history = createHistory();
