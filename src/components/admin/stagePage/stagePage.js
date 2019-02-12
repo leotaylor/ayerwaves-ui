@@ -58,9 +58,10 @@ class stagePage extends React.Component {
 
   // EDIT GENRE NAME
 
-    changeNameClick = (e) => {
-      const showEditId = e.target.id * 1;
+    changeNameClick = (id, stage) => {
+      const showEditId = id * 1;
       this.setState({showEdit: showEditId});
+      this.setState({oldStage: stage});
     }
 
     editNameChange = (e) => {
@@ -140,7 +141,7 @@ class stagePage extends React.Component {
         if (showEdit !== stage.id) {
           return (
             <div>
-              <h3 className="col-xs-9" id={stage.id} onClick={this.changeNameClick}>{stage.stageName}</h3>
+              <h3 className="col-xs-9" id={stage.id} onClick={() => this.changeNameClick(stage.id, stage)}>{stage.stageName}</h3>
               <button type="button" className="btn btn-danger btn-sm glyphicon glyphicon-trash can" aria-hidden="true" value={stage.stageName} id={stage.id} onClick={this.deleteClick}></button>
             </div>
           );

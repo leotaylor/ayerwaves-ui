@@ -1,3 +1,18 @@
 .home {
-  background-color: darkgoldenrod;
+  background-color: rgb(158, 194, 42);
+  min-height: 100%;
+  margin-top: -45px;
+  padding-top: 30px;
+  padding-bottom: 10%;
+}
+
+.bandbtn {
+  margin-bottom: 1%;
+  margin-top: 25px;
+}
+
+.ufo {
+  border-radius: 1%;
+  border: 40px inset black;
+  box-shadow:  2px 3px 50px black;
 }

@@ -79,7 +79,6 @@ class App extends Component {
               authed={this.state.authed}
               logout={this.logout}
               component={Navbar}
-              route={this}
             />
             {/* <Route
               authed={this.state.authed}

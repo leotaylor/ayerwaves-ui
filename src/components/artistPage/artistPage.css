@@ -1,0 +1,6 @@
+.bandimage {
+  height: 40em;
+  border-radius: 2%;
+  border: 10px inset black;
+  box-shadow:  2px 3px 50px black;
+}

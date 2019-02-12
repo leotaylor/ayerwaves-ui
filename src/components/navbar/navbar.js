@@ -2,13 +2,12 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import artistRequest from '../../apiRequest/artists';
 // import { NavDropdown } from 'react-bootstrap';
+import { withRouter } from "react-router-dom";
 
 import './navbar.css';
 
 import authRequests from '../../firebaseRequests/auth';
 import ArtistSelect from '../navbar/artistSelect/ArtistSelect';
-
-// import createHistory from 'history/createBrowserHistory';
 
 class Navbar extends React.Component {
 
@@ -27,16 +26,9 @@ class Navbar extends React.Component {
       });
   }
 
-  // singleArtist = (e) => {
-  //   const Aid = e.target.value * 1;
-  //   history.push(`/artist/${Aid}`);
-  // };
-
   singleArtist = (e) => {
     const Aid = e.target.value * 1;
-    // this.props.history.push(`/artist/${Aid}`);
-    console.log(Aid);
-    console.log(this.props.route);
+    this.props.history.push(`/artist/${Aid}`);
   };
 
   render () {
@@ -45,12 +37,6 @@ class Navbar extends React.Component {
       authRequests.logoutUser();
       logout();
     };
-
-    // const artistComponent = this.state.artists.map((artist) => {
-    //   return (
-    //     <option key={artist.id} value={artist.id} onChange={() => singleArtist(artist.id)}>{artist.name}</option>
-    //   );
-    // });
 
     const artistComponent = this.state.artists.map((artist) => {
       return (
@@ -70,7 +56,7 @@ class Navbar extends React.Component {
         <nav className="navbar navbar-inverse">
           <div className="container-fluid">
             <div className="navbar-header">
-              <Link to="/" className="navbar-brand">Ayerwaves</Link>
+              <Link to="/" className="navbar-brand" onClick={logoutClickEvent}>Ayerwaves</Link>
             </div>
             {
               authed ? (
@@ -81,11 +67,13 @@ class Navbar extends React.Component {
                 </ul>
               ) : (
                 <ul className="nav navbar-nav navbar-right">
-                  <li>
+                  <li className='dropdown'>
+                    {/* <Link to={this.singleArtist}> */}
                     <select onChange={this.singleArtist}>
                       <option>Artists</option>
                       {artistComponent}
                     </select>
+                    {/* </Link> */}
                   </li>
                   <li>
                     <Link to="/admin">Admin</Link>
@@ -100,5 +88,4 @@ class Navbar extends React.Component {
   }
 };
 
-export default Navbar;
-// export const history = createHistory();
+export default withRouter(Navbar);

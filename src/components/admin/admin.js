@@ -6,7 +6,6 @@ import StageSelect from './StageSelect';
 import genreRequest from '../../apiRequest/genre';
 import stageRequest from '../../apiRequest/stage';
 import authRequest from '../../firebaseRequests/auth';
-// import {Modal} from 'react-bootstrap';
 import GenrePage from '../admin/genrePage/genrePage';
 import StagePage from '../admin/stagePage/stagePage';
 
@@ -128,13 +127,15 @@ class admin extends React.Component {
 
   // Edit Artists
 
-  editArtist = (e) => {
-    const showEditId = e.target.id * 1;
+  editArtist = (id, artist) => {
+    const showEditId = id * 1;
     this.setState({showArtistEdit: showEditId});
+    this.setState({editArtist: artist});
   }
 
   hideArtists = () => {
     this.setState({showArtistEdit: 0});
+    this.setState({editArtist: defaultArtist});
   }
 
   editformSubmit = (e) => {
@@ -226,7 +227,7 @@ class admin extends React.Component {
       if (showArtist !== artist.id) {
         return (
           <div className="row" key={artist.id}>
-            <p className="col-sm-6" id={artist.id} onClick={this.editArtist}>{artist.name}</p>
+            <p className="col-sm-6" id={artist.id} onClick={() => this.editArtist(artist.id, artist)}>{artist.name}</p>
             <button type="button" className="btn btn-danger btn-xs glyphicon glyphicon-trash" aria-hidden="true" id={artist.id} onClick={this.deleteClick}></button>
           </div>
         );
@@ -365,14 +366,14 @@ class admin extends React.Component {
 
     return (
       <div className="admin">
-        <h1>Admin</h1>
-        <div className="col-sm-6 text-left">
+        <h1>Welcome Ayerwaves Admin</h1>
+        <div className="col-sm-4 text-left">
           <h1>Artists</h1>
           <h4>(Click name to edit)</h4>
           {artistComponent}
         </div>
 
-        <div className="col-sm-6">
+        <div className="col-sm-4">
           <div className="col-xs-8 col-xs-offset-2">
             <h2 className="text-center">Add NEW Artist:</h2>
             <form onSubmit={this.formSubmit}>
@@ -453,6 +454,9 @@ class admin extends React.Component {
               <button className="btn-success btn-lg">Submit Artist</button>
             </form>
           </div>
+
+        </div>
+        <div className="col-sm-4">
           <div className="row">
             <GenrePage
               updateState={this.updateState}
