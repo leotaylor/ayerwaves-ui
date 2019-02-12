@@ -3,11 +3,11 @@
 }
 
 .dropdown {
-  margin-top: 5%;
+  margin-top: 6%;
 }
 button, select {
   text-transform: none;
-  background-color: black;
+  background-color: #222;
   color: white;
-  border-color: black;
+  border-color: #080808;
 }
