@@ -88,6 +88,9 @@ class Navbar extends React.Component {
                     </li>
                   </li> */}
                   <li>
+                    <Link to="/tickets">Tickets</Link>
+                  </li>
+                  <li>
                     <Link to="/admin">Admin</Link>
                   </li>
                 </ul>
