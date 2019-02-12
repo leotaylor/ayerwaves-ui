@@ -127,11 +127,6 @@ class admin extends React.Component {
 
   // Edit Artists
 
-  // editArtist = (e) => {
-  //   const showEditId = e.target.id * 1;
-  //   this.setState({showArtistEdit: showEditId});
-  // }
-
   editArtist = (id, artist) => {
     const showEditId = id * 1;
     this.setState({showArtistEdit: showEditId});
@@ -140,6 +135,7 @@ class admin extends React.Component {
 
   hideArtists = () => {
     this.setState({showArtistEdit: 0});
+    this.setState({editArtist: defaultArtist});
   }
 
   editformSubmit = (e) => {

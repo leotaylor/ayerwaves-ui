@@ -8,7 +8,7 @@ class artistPage extends React.Component {
     singleArtists: [],
   }
 
-  componentDidMount () {
+  componentDidUpdate () {
     const artistId = this.props.match.params.id;
     artistRequest
       .getSingleArtist(artistId)
