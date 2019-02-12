@@ -5,3 +5,9 @@
 .dropdown {
   margin-top: 5%;
 }
+button, select {
+  text-transform: none;
+  background-color: black;
+  color: white;
+  border-color: black;
+}

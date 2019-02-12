@@ -66,15 +66,27 @@ class Navbar extends React.Component {
                   </li>
                 </ul>
               ) : (
-                <ul className="nav navbar-nav navbar-right">
+                <ul className="nav navbar-nav navbar-right top">
                   <li className='dropdown'>
                     {/* <Link to={this.singleArtist}> */}
-                    <select onChange={this.singleArtist}>
+                    <select className='select' onChange={this.singleArtist}>
                       <option>Artists</option>
                       {artistComponent}
                     </select>
                     {/* </Link> */}
                   </li>
+                  {/* <li>
+                    <li className="dropdown">
+                      <button className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">VENDORS <span class="caret"></span></button>
+                      <ul className="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                      </ul>
+                    </li>
+                  </li> */}
                   <li>
                     <Link to="/admin">Admin</Link>
                   </li>
