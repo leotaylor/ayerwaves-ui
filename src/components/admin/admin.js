@@ -127,9 +127,15 @@ class admin extends React.Component {
 
   // Edit Artists
 
-  editArtist = (e) => {
-    const showEditId = e.target.id * 1;
+  // editArtist = (e) => {
+  //   const showEditId = e.target.id * 1;
+  //   this.setState({showArtistEdit: showEditId});
+  // }
+
+  editArtist = (id, artist) => {
+    const showEditId = id * 1;
     this.setState({showArtistEdit: showEditId});
+    this.setState({editArtist: artist});
   }
 
   hideArtists = () => {
@@ -140,7 +146,7 @@ class admin extends React.Component {
     const {editArtist} = this.state;
     editArtist.uid = authRequest.getUid();
     const aId = e.target.id * 1;
-    // e.preventDefault();
+    e.preventDefault();
     if (
       editArtist.name &&
       editArtist.day &&
@@ -225,7 +231,7 @@ class admin extends React.Component {
       if (showArtist !== artist.id) {
         return (
           <div className="row" key={artist.id}>
-            <p className="col-sm-6" id={artist.id} onClick={this.editArtist}>{artist.name}</p>
+            <p className="col-sm-6" id={artist.id} onClick={() => this.editArtist(artist.id, artist)}>{artist.name}</p>
             <button type="button" className="btn btn-danger btn-xs glyphicon glyphicon-trash" aria-hidden="true" id={artist.id} onClick={this.deleteClick}></button>
           </div>
         );
