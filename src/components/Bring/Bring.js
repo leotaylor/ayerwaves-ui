@@ -104,6 +104,15 @@ class Bring extends React.Component {
               The use or possession of any illegal drugs will not be tolerated anywhere inside or outside the venue. Do not bring any illegal substances to the event; violators will be prosecuted to the fullest extent of the law. If you are found intoxicated at entry, security will not allow you to enter the venue. Event staff reserves the right to refuse entry to anyone. Be responsible, and make smart choices. </p><br/><br/>
           <p>We are committed to fostering a relaxed atmosphere, but there are certain guidelines we must abide by in order to ensure a safe and fun festival for everyone.  Help us help you by keeping fire lanes clear, notifying staff of any hazards, and communicating in times of distress – we’re on the same team! Look out for one another, stay hydrated, take breaks, wear sunscreen, and most of all, have fun!</p>
         </div>
+        <footer>
+          <p>AyerWaves Entertainment © 2018 All Rights Reserved<br/>
+          Contact: ayerwavesmusic@gmail.com<br/>
+          </p>
+          <p>
+          A Sound Farm Events Production<br></br>
+            <a href="https://soundfarm.us/">www.soundfarm.us</a>
+          </p>
+        </footer>
       </div>
     );
   }

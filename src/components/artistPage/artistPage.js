@@ -33,7 +33,7 @@ class artistPage extends React.Component {
 
     return (
       <div className="artistPage">
-        <h1>{singleArtistComponent.name}</h1>
+        <h1 className="artName">{singleArtistComponent.name}</h1>
         <img className="bandimage" alt="bandphoto" src={singleArtistComponent.imageLink}></img>
         <h3>Genre: {singleArtistComponent.genreName}</h3>
         <h4>{singleArtistComponent.description}</h4>
