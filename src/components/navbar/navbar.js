@@ -51,6 +51,12 @@ class Navbar extends React.Component {
       );
     });
 
+    // const ticketComponent = () => {
+    //   return (
+
+    //   )
+    // }
+
     return (
       <div className="Navbar">
         <nav className="navbar navbar-inverse">
@@ -66,16 +72,40 @@ class Navbar extends React.Component {
                   </li>
                 </ul>
               ) : (
-                <ul className="nav navbar-nav navbar-right">
-                  <li className='dropdown'>
+                <ul className="nav navbar-nav navbar-right top">
+                  <li className="navlink">
+                    <a href="https://www.eventbrite.com/e/ayerwaves-at-further-farms-tickets-49259383141" rel="noopener noreferrer" target="_blank">Tickets</a>
+                  </li>
+                  <li className="navlink">
+                    <Link to="/about">About</Link>
+                  </li>
+                  <li className="navlink">
+                    <Link to="/contact">Contact</Link>
+                  </li>
+                  <li className="navlink">
+                    <Link to="/bring">What To Bring</Link>
+                  </li>
+                  <li className='dropdown navlink'>
                     {/* <Link to={this.singleArtist}> */}
-                    <select onChange={this.singleArtist}>
+                    <select className='select' onChange={this.singleArtist}>
                       <option>Artists</option>
                       {artistComponent}
                     </select>
                     {/* </Link> */}
                   </li>
-                  <li>
+                  {/* <li>
+                    <li className="dropdown">
+                      <button className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">VENDORS <span class="caret"></span></button>
+                      <ul className="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                      </ul>
+                    </li>
+                  </li> */}
+                  <li className="navlink">
                     <Link to="/admin">Admin</Link>
                   </li>
                 </ul>

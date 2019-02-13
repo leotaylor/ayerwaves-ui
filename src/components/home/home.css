@@ -1,18 +1,66 @@
 .home {
-  background-color: rgb(158, 194, 42);
+  background-color: rgb(16, 113, 145);
   min-height: 100%;
   margin-top: -45px;
   padding-top: 30px;
   padding-bottom: 10%;
+  animation: colorchange 50s;
+  -webkit-animation: colorchange 50s;
 }
 
 .bandbtn {
   margin-bottom: 1%;
   margin-top: 25px;
+  margin-left: .2%;
+  margin-right: .2%;
 }
 
 .ufo {
   border-radius: 1%;
   border: 40px inset black;
   box-shadow:  2px 3px 50px black;
+}
+
+.newFont{
+  /* font-family: 'Merienda', cursive; */
+  /* font-family: 'Playfair Display SC', serif; */
+  font-family: 'Fredericka the Great', bold;
+  color: black;
+}
+
+a.farmlink {
+  color: black;
+  text-decoration: none;
+  text-decoration: underline;
+
+}
+
+a:hover
+{
+   color:rgb(73, 198, 0);
+   text-decoration:none;
+   cursor: pointer;
+}
+
+.footer {
+  font-family: 'Merienda', cursive;
+  text-decoration: none;
+}
+
+@keyframes colorchange
+{
+  0%   {background: rgb(16, 113, 145);}
+  25%  {background: rgb(158, 194, 42);}
+  50%  {background: orange;}
+  75%  {background: yellow;}
+  100% {background: rgb(16, 113, 145);}
+}
+
+@-webkit-keyframes colorchange
+{
+  0%   {background: rgb(158, 194, 42);}
+  25%  {background: yellow;}
+  50%  {background: orange;}
+  75%  {background: rgb(16, 113, 145);}
+  100% {background: rgb(158, 194, 42);}
 }

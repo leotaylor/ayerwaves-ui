@@ -1,6 +1,15 @@
+.artistPage {
+    /* font-family: 'Merienda', cursive; */
+  font-family: 'Playfair Display SC', serif;
+}
+
 .bandimage {
   height: 40em;
   border-radius: 2%;
   border: 10px inset black;
   box-shadow:  2px 3px 50px black;
+}
+
+.artName {
+  font-family: 'Fredericka the Great', bold;
 }

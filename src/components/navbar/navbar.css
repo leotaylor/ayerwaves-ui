@@ -3,5 +3,25 @@
 }
 
 .dropdown {
-  margin-top: 5%;
+  margin-top: 2.7%;
+}
+button, select {
+  text-transform: none;
+  background-color: #222;
+  color: #9d9d9d;
+  border: none;
+  /* border-color: #080808; */
+}
+
+/* .navlink {
+  margin-right: 10%;
+} */
+
+.navbar-inverse .navbar-nav>li>a:hover {
+  color: rgb(172, 209, 37);
+  background-color: rgb(11, 90, 37);
+}
+
+.navbar-inverse .navbar-nav>li>a:active{
+  transform: scaleX(1.20);
 }
