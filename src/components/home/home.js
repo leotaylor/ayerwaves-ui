@@ -18,6 +18,19 @@ class home extends React.Component {
       });
   }
 
+  // ticketClick = () => {
+  //   window.EBWidgets.createWidget({
+  //     widgetType: 'checkout',
+  //     eventId: '49259383141',
+  //     modal: true,
+  //     modalTriggerElementId: 'eventbrite-widget-modal-trigger-49259383141',
+  //     onOrderComplete: this.exampleCallback(),
+  //   });
+  // }
+  // exampleCallback = () => {
+  //   console.log('Order complete!');
+  // }
+
   render () {
 
     const singleArtist = (id) => {
@@ -30,13 +43,34 @@ class home extends React.Component {
       );
     });
 
+    // const ticketClick = () => {
+    //   return (
+    //     window.EBWidgets.createWidget({
+    //       widgetType: 'checkout',
+    //       eventId: '49259383141',
+    //       modal: true,
+    //       modalTriggerElementId: 'eventbrite-widget-modal-trigger-49259383141',
+    //       onOrderComplete: this.exampleCallback(),
+    //     })
+    //   );
+    // };
+
     return (
       <div className="home">
-        {artistComponent}
-        <img className="ufo" src={require('../../images/ayerUFO.JPG')} alt="ufo"></img>
+        <div className="newFont">
+          <h1>Welcome To</h1>
+          <h1>The 4th Annual AyerWaves</h1>
+          <h1>May 31st - June 2nd</h1>
+          <a href="https://www.google.com/maps/place/Further+Farms/@36.234395,-86.868238,15z/data=!4m5!3m4!1s0x0:0x2e9b9005b4be5685!8m2!3d36.234395!4d-86.868238" className="farmlink" rel="noopener noreferrer" target="_blank"><h1>Further Farms Nashville</h1></a>
+        </div>
         {/* <div>
-          {artistComponent}
+          <button id="eventbrite-widget-modal-trigger-49259383141" type="button" onClick={this.ticketClick}>Buy Tickets</button>
+          <noscript>Buy Tickets on Eventbrite</noscript>
         </div> */}
+        <img className="ufo" src={require('../../images/ayerUFO.JPG')} alt="ufo"></img>
+        <div>
+          {artistComponent}
+        </div>
       </div>
     );
   }

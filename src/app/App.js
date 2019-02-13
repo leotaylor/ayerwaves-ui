@@ -8,6 +8,7 @@ import Navbar from '../components/navbar/navbar';
 import Home from '../components/home/home';
 import Admin from '../components/admin/admin';
 import ArtistPage from '../components/artistPage/artistPage';
+import About from '../components/about/About';
 
 import fbConnection from '../firebaseRequests/connection';
 
@@ -108,6 +109,11 @@ class App extends Component {
                     path="/artist/:id"
                     authed={this.state.authed}
                     component={ArtistPage}
+                  />
+                  <PublicRoute
+                    path="/about"
+                    authed={this.state.authed}
+                    component={About}
                   />
                 </Switch>
               </div>

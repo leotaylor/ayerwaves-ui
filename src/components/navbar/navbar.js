@@ -51,6 +51,12 @@ class Navbar extends React.Component {
       );
     });
 
+    // const ticketComponent = () => {
+    //   return (
+
+    //   )
+    // }
+
     return (
       <div className="Navbar">
         <nav className="navbar navbar-inverse">
@@ -67,7 +73,19 @@ class Navbar extends React.Component {
                 </ul>
               ) : (
                 <ul className="nav navbar-nav navbar-right top">
-                  <li className='dropdown'>
+                  <li className="navlink">
+                    <a href="https://www.eventbrite.com/e/ayerwaves-at-further-farms-tickets-49259383141" rel="noopener noreferrer" target="_blank">Tickets</a>
+                  </li>
+                  <li className="navlink">
+                    <Link to="/about">About</Link>
+                  </li>
+                  <li className="navlink">
+                    <Link to="/contact">Contact</Link>
+                  </li>
+                  <li className="navlink">
+                    <Link to="/bring">What To Bring</Link>
+                  </li>
+                  <li className='dropdown navlink'>
                     {/* <Link to={this.singleArtist}> */}
                     <select className='select' onChange={this.singleArtist}>
                       <option>Artists</option>
@@ -87,10 +105,7 @@ class Navbar extends React.Component {
                       </ul>
                     </li>
                   </li> */}
-                  <li>
-                    <Link to="/tickets">Tickets</Link>
-                  </li>
-                  <li>
+                  <li className="navlink">
                     <Link to="/admin">Admin</Link>
                   </li>
                 </ul>

@@ -3,7 +3,7 @@
 }
 
 .dropdown {
-  margin-top: 5%;
+  margin-top: 2.7%;
 }
 button, select {
   text-transform: none;
@@ -12,6 +12,10 @@ button, select {
   border: none;
   /* border-color: #080808; */
 }
+
+/* .navlink {
+  margin-right: 10%;
+} */
 
 .navbar-inverse .navbar-nav>li>a:hover {
   color: rgb(172, 209, 37);

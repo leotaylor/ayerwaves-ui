@@ -1,0 +1,30 @@
+.aboutDiv {
+  margin: 5% 10%;
+}
+
+.aboutus {
+  color: green;
+  margin: 2em 4.5em;
+
+}
+
+p.writing {
+  color: black;
+  margin: 1em 0;
+  line-height: 2em;
+  font-size: 16px;
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+.chairman {
+  color: black;
+  margin: 1em 0;
+  line-height: 2em;
+  font-size: 16px;
+  display: block;
+  margin-top: 10%;
+}
