@@ -42,6 +42,11 @@ a:hover
    cursor: pointer;
 }
 
+.footer {
+  font-family: 'Merienda', cursive;
+  text-decoration: none;
+}
+
 @keyframes colorchange
 {
   0%   {background: rgb(16, 113, 145);}

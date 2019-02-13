@@ -48,6 +48,15 @@ class About extends React.Component {
             </div>
           </div>
         </div>
+        <footer>
+          <p>AyerWaves Entertainment © 2018 All Rights Reserved<br/>
+          Contact: ayerwavesmusic@gmail.com<br/>
+          </p>
+          <p>
+          A Sound Farm Events Production<br></br>
+            <a href="https://soundfarm.us/">www.soundfarm.us</a>
+          </p>
+        </footer>
       </div>
     );
   }
