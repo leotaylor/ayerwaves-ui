@@ -9,6 +9,7 @@ import Home from '../components/home/home';
 import Admin from '../components/admin/admin';
 import ArtistPage from '../components/artistPage/artistPage';
 import About from '../components/about/About';
+import Bring from '../components/Bring/Bring';
 
 import fbConnection from '../firebaseRequests/connection';
 
@@ -114,6 +115,11 @@ class App extends Component {
                     path="/about"
                     authed={this.state.authed}
                     component={About}
+                  />
+                  <PublicRoute
+                    path="/bring"
+                    authed={this.state.authed}
+                    component={Bring}
                   />
                 </Switch>
               </div>

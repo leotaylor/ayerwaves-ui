@@ -4,22 +4,21 @@
   margin-top: -45px;
   padding-top: 30px;
   padding-bottom: 10%;
+  animation: colorchange 50s;
+  -webkit-animation: colorchange 50s;
 }
 
 .bandbtn {
   margin-bottom: 1%;
   margin-top: 25px;
+  margin-left: .2%;
+  margin-right: .2%;
 }
 
 .ufo {
   border-radius: 1%;
   border: 40px inset black;
   box-shadow:  2px 3px 50px black;
-}
-
-.home {
-  animation: colorchange 50s;
-  -webkit-animation: colorchange 50s;
 }
 
 .newFont{

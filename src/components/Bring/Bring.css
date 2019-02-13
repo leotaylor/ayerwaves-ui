@@ -1,0 +1,38 @@
+.bringDiv {
+  margin-left: 18%;
+  margin-right: 18%;
+  background-color: rgb(36, 84, 169);
+  color: white;
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-top: 3.2em;
+  padding-bottom: 2em;
+  /* margin-top: -2.5em; */
+  line-height: 1.5;
+  font-family: 'PT Sans',sans-serif;
+}
+
+.bringDiv strong {
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+.bandPhoto {
+  background-image: url('https://d3jjg4nf4bbybe.cloudfront.net/u/278147/359dc908b4760365a7f038a88f54f914e4d9b021/original/35026422-2181353265224834-4324106282576379904-o.jpg/!!/b%3AW1siZXh0cmFjdCIseyJsZWZ0IjowLCJ0b3AiOjI1Miwid2lkdGgiOjE4MDAsImhlaWdodCI6ODM4fV0sWyJyZXNpemUiLDE2MDBdLFsibWF4Il0sWyJ3ZSJdXQ%3D%3D.jpg');
+  padding-bottom: 40em;
+  margin-top: -10em;
+}
+
+.title {
+  font-size: 3em;
+  color: #89ace6;
+}
+
+.pack {
+  color: #89ace6;
+}
+
+.bringDiv p {
+  font-family: 'PT Sans',sans-serif;
+  font-size: 16px;
+}

@@ -60,7 +60,7 @@ class home extends React.Component {
         <div className="newFont">
           <h1>Welcome To</h1>
           <h1>The 4th Annual AyerWaves</h1>
-          <h1>May 31st - June 2nd</h1>
+          <h1>May 31st - June 2nd, 2019</h1>
           <a href="https://www.google.com/maps/place/Further+Farms/@36.234395,-86.868238,15z/data=!4m5!3m4!1s0x0:0x2e9b9005b4be5685!8m2!3d36.234395!4d-86.868238" className="farmlink" rel="noopener noreferrer" target="_blank"><h1>Further Farms Nashville</h1></a>
         </div>
         {/* <div>
