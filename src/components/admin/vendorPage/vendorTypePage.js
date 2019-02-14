@@ -61,6 +61,8 @@ class vendorTypePage extends React.Component {
       });
   }
 
+  // Edit VendorType
+
   showVts = () => {
     this.setState({showVts: true});
   }
@@ -117,6 +119,32 @@ class vendorTypePage extends React.Component {
       .catch((err) => {
         console.error('error with update request', err);
       });
+  }
+
+  // Delete Vendor Type
+  deleteClick = (e) => {
+    const vendorTypeToDelete = e.target.id;
+    const vendors = this.props.details;
+    const vendorType = e.target.value;
+    vendors.forEach((vendor) => {
+      if (vendor.type !== vendorType) {
+        return (
+          vendorTypeRequest
+            .deleteRequest(vendorTypeToDelete)
+            .then(() => {
+              this.props.updateState();
+              this.componentDidMount();
+            })
+            .catch((err) => {
+              console.error('error with delete request', err);
+            })
+        );
+      } else {
+        return (
+          alert("no can do cowboy, the vendor: " + vendor.name + " is using this vendor type")
+        );
+      }
+    });
   }
 
   render () {

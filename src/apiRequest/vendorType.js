@@ -39,4 +39,17 @@ const putRequest = (vtId, updatedvendortype) => {
   });
 };
 
-export default {getRequest, postRequest, putRequest};
+const deleteRequest = (id) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .delete(`https://ayerwavesapi.azurewebsites.net/api/vendortype/deleteVendorType/${id}`)
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export default {getRequest, postRequest, putRequest, deleteRequest};

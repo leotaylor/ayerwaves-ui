@@ -111,6 +111,7 @@ class vendorPage extends React.Component {
         <div className='col-sm-4 text-center'>
           <VendorTypePage
             updateState={this.props.updateState}
+            details={this.props.details}
           />
         </div>
       </div>
