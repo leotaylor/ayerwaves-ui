@@ -5,9 +5,11 @@ import GenreSelect from './GenreSelect';
 import StageSelect from './StageSelect';
 import genreRequest from '../../apiRequest/genre';
 import stageRequest from '../../apiRequest/stage';
+import vendorRequest from '../../apiRequest/vendor';
 import authRequest from '../../firebaseRequests/auth';
 import GenrePage from '../admin/genrePage/genrePage';
 import StagePage from '../admin/stagePage/stagePage';
+import VendorPage from '../admin/vendorPage/vendorPage';
 
 const defaultArtist = {
   name: '',
@@ -27,6 +29,7 @@ class admin extends React.Component {
     genres: [],
     stages: [],
     showArtistEdit: 0,
+    vendors: [],
   }
 
   componentDidMount () {
@@ -53,6 +56,15 @@ class admin extends React.Component {
       })
       .catch((err) => {
         console.error('error with getting genres', err);
+      });
+    vendorRequest
+      .getRequest()
+      .then((vendors) => {
+        this.setState({vendors});
+        console.log(this.state.vendors);
+      })
+      .catch((err) => {
+        console.error('errror with getting vendors', err);
       });
   }
 
@@ -357,7 +369,7 @@ class admin extends React.Component {
     });
 
     return (
-      <div className="admin">
+      <div className="admin col-sm-12">
         <h1>Welcome Ayerwaves Admin</h1>
         <div className="col-sm-4 text-left">
           <h1>Artists</h1>
@@ -462,6 +474,11 @@ class admin extends React.Component {
               artistState={this.state.artists}
             />
           </div>
+        </div>
+        <div className="row">
+          <VendorPage
+            details={this.state.vendors}
+          />
         </div>
       </div>
     );
