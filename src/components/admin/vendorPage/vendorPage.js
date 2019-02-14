@@ -43,16 +43,6 @@ class vendorPage extends React.Component {
       );
     });
 
-    // const details = this.props.details;
-
-    // const vendorSelectComponent = details.map((details) => {
-    //   return (
-    //     <option className="col-sm-6" value={details.id} key={details.id}>
-    //       {details.type}
-    //     </option>
-    //   );
-    // });
-
     const vendorSelectComponent = this.state.vendorTypes.map((vendorType) => {
       return (
         <option className="col-sm-6" value={vendorType.id} key={vendorType.id}>
