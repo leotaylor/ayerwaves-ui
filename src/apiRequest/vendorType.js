@@ -26,4 +26,17 @@ const postRequest = (newVT) => {
   });
 };
 
-export default {getRequest, postRequest};
+const putRequest = (vtId, updatedvendortype) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .put(`https://ayerwavesapi.azurewebsites.net/api/vendortype/updatevendortype/${vtId}`, updatedvendortype)
+      .then(res => {
+        resolve(res.data);
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
+};
+
+export default {getRequest, postRequest, putRequest};
