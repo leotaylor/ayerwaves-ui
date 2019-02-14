@@ -27,6 +27,16 @@ class vendorPage extends React.Component {
       );
     });
 
+    const details = this.props.details;
+
+    const vendorSelectComponent = details.map((details) => {
+      return (
+        <option className="col-sm-6" value={details.id} key={details.id}>
+          {details.name}
+        </option>
+      );
+    });
+
     return (
       <div className='col-sm-12'>
         <div className="col-sm-4 text-left">
@@ -59,8 +69,8 @@ class vendorPage extends React.Component {
                   <label htmlFor="genre">Vendor Type:</label>
                   <br />
                   <select className="col-sm-12" onChange={this.genreChange}>
-                    <option>Genres</option>
-                    {/* {genreComponent} */}
+                    <option>Vendor Type</option>
+                    {vendorSelectComponent}
                   </select>
                 </fieldset>
               </div>
