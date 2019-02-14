@@ -478,6 +478,7 @@ class admin extends React.Component {
         <div className="row">
           <VendorPage
             details={this.state.vendors}
+            updateState={this.updateState}
           />
         </div>
       </div>

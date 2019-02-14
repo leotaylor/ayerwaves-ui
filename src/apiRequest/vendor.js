@@ -13,4 +13,17 @@ const getRequest = () => {
   });
 };
 
-export default {getRequest};
+const deleteRequest = (id) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .delete(`https://ayerwavesapi.azurewebsites.net/api/vendor/deleteVendor/${id}`)
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export default {getRequest, deleteRequest};

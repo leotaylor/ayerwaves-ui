@@ -1,8 +1,20 @@
 import React from 'react';
-// import vendorRequest from '../../../apiRequest/vendor';
+import vendorRequest from '../../../apiRequest/vendor';
 // import authRequest from '../../../firebaseRequests/auth';
 
 class vendorPage extends React.Component {
+
+  deleteClick = (e) => {
+    const vendorToDelete = e.target.id;
+    vendorRequest
+      .deleteRequest(vendorToDelete)
+      .then(() => {
+        this.props.updateState();
+      })
+      .catch((err) => {
+        console.error('error with delete request', err);
+      });
+  }
 
   render () {
     const vendorComponent = this.props.details.map((vendor) => {
