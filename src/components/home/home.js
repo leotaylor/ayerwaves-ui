@@ -79,6 +79,11 @@ class home extends React.Component {
           A Sound Farm Events Production<br></br>
             <a href="https://soundfarm.us/">www.soundfarm.us</a>
           </p>
+          <div>
+            <a href="https://www.facebook.com/AyerWavesMusic/"><i className="fab fa-facebook-f icon"></i></a>
+            <a href="https://www.youtube.com/channel/UCbzDiCYcUFJaULli4zTESwQ"><i className="fab fa-youtube icon"></i></a>
+            <a href="https://www.instagram.com/ayerwavesmusic"><i className="fab fa-instagram icon"></i></a>
+          </div>
         </footer>
       </div>
     );
