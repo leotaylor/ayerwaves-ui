@@ -244,8 +244,6 @@ class admin extends React.Component {
                     className="col-xs-12"
                     type="text"
                     id="name"
-                    // placeholder={artist.name}
-                    // value={this.state.editArtist.name}
                     defaultValue={artist.name}
                     onChange={this.editNameChange}
                   />
@@ -258,8 +256,6 @@ class admin extends React.Component {
                     className="col-xs-12"
                     type="text"
                     id="day"
-                    // placeholder={artist.day}
-                    // value={this.state.editArtist.day}
                     defaultValue={artist.day}
                     onChange={this.editDayChange}
                   />
@@ -311,8 +307,6 @@ class admin extends React.Component {
                     className="col-xs-12"
                     type="text"
                     id="description"
-                    // placeholder="Description..."
-                    // value={this.state.editArtist.description}
                     defaultValue={artist.description}
                     onChange={this.editDescChange}
                   />
@@ -325,8 +319,6 @@ class admin extends React.Component {
                     className="col-xs-12"
                     type="text"
                     id="imageUrl"
-                    // placeholder={artist.imageLink}
-                    // value={this.state.editArtist.imageLink}
                     onChange={this.editImageChange}
                     defaultValue={artist.imageLink}
                   />
