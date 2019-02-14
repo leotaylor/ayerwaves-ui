@@ -2,8 +2,24 @@ import React from 'react';
 import vendorRequest from '../../../apiRequest/vendor';
 // import authRequest from '../../../firebaseRequests/auth';
 import VendorTypePage from '../vendorPage/vendorTypePage';
+import vendorTypeRequest from '../../../apiRequest/vendorType';
 
 class vendorPage extends React.Component {
+
+  state = {
+    vendorTypes: [],
+  }
+
+  componentDidMount = () => {
+    vendorTypeRequest
+      .getRequest()
+      .then((vendorTypes) => {
+        this.setState({vendorTypes});
+      })
+      .catch((err) => {
+        console.error('error with getting vendortypes', err);
+      });
+  }
 
   deleteClick = (e) => {
     const vendorToDelete = e.target.id;
@@ -27,12 +43,20 @@ class vendorPage extends React.Component {
       );
     });
 
-    const details = this.props.details;
+    // const details = this.props.details;
 
-    const vendorSelectComponent = details.map((details) => {
+    // const vendorSelectComponent = details.map((details) => {
+    //   return (
+    //     <option className="col-sm-6" value={details.id} key={details.id}>
+    //       {details.type}
+    //     </option>
+    //   );
+    // });
+
+    const vendorSelectComponent = this.state.vendorTypes.map((vendorType) => {
       return (
-        <option className="col-sm-6" value={details.id} key={details.id}>
-          {details.name}
+        <option className="col-sm-6" value={vendorType.id} key={vendorType.id}>
+          {vendorType.vendorType}
         </option>
       );
     });
