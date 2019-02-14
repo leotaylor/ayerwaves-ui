@@ -17,8 +17,12 @@
 
 .ufo {
   border-radius: 1%;
-  border: 40px inset black;
+  /* border: 40px inset black; */
+  border-width: 40px;
+  border-style: inset;
+  border-color: black;
   box-shadow:  2px 3px 50px black;
+  width: 75%;
 }
 
 .newFont{
