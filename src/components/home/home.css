@@ -22,7 +22,7 @@
   border-style: inset;
   border-color: black;
   box-shadow:  2px 3px 50px black;
-  width: 75%;
+  width: 70%;
 }
 
 .newFont{
@@ -49,6 +49,12 @@ a:hover
 .footer {
   font-family: 'Merienda', cursive;
   text-decoration: none;
+}
+
+.icon {
+  font-size: 24px;
+  color: black;
+  margin: 5%;
 }
 
 @keyframes colorchange
