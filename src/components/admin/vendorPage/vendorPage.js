@@ -1,6 +1,7 @@
 import React from 'react';
 import vendorRequest from '../../../apiRequest/vendor';
 // import authRequest from '../../../firebaseRequests/auth';
+import VendorTypePage from '../vendorPage/vendorTypePage';
 
 class vendorPage extends React.Component {
 
@@ -83,7 +84,11 @@ class vendorPage extends React.Component {
           </div>
 
         </div>
-        <div className='col-sm-4 text-center'><h1>Vendor Type</h1></div>
+        <div className='col-sm-4 text-center'>
+          <VendorTypePage
+            updateState={this.props.updateState}
+          />
+        </div>
       </div>
     );
   }
