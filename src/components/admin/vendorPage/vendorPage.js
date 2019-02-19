@@ -21,6 +21,10 @@ class vendorPage extends React.Component {
       });
   }
 
+  updateVendorState = () => {
+    this.componentDidMount();
+  }
+
   deleteClick = (e) => {
     const vendorToDelete = e.target.id;
     vendorRequest
@@ -112,6 +116,8 @@ class vendorPage extends React.Component {
           <VendorTypePage
             updateState={this.props.updateState}
             details={this.props.details}
+            vtprops={this.state.vendorTypes}
+            updateVen={this.updateVendorState}
           />
         </div>
       </div>

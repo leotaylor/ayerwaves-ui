@@ -9,22 +9,10 @@ const defaultVendorType = {
 class vendorTypePage extends React.Component {
 
   state = {
-    vendorTypes: [],
     newVendorType: defaultVendorType,
     oldVendorType: defaultVendorType,
     showEdit: 0,
     showVts: false,
-  }
-
-  componentDidMount = () => {
-    vendorTypeRequest
-      .getRequest()
-      .then((vendorTypes) => {
-        this.setState({vendorTypes});
-      })
-      .catch((err) => {
-        console.error('error with getting vendortypes', err);
-      });
   }
 
   // Post VendorType
@@ -57,7 +45,7 @@ class vendorTypePage extends React.Component {
       .postRequest(this.state.newVendorType)
       .then(() => {
         this.props.updateState();
-        this.componentDidMount();
+        this.props.updateVen();
       });
   }
 
@@ -114,7 +102,7 @@ class vendorTypePage extends React.Component {
       .putRequest(id, update)
       .then (() => {
         this.props.updateState();
-        this.componentDidMount();
+        this.props.updateVen();
       })
       .catch((err) => {
         console.error('error with update request', err);
@@ -133,7 +121,7 @@ class vendorTypePage extends React.Component {
             .deleteRequest(vendorTypeToDelete)
             .then(() => {
               this.props.updateState();
-              this.componentDidMount();
+              this.props.updateVen();
             })
             .catch((err) => {
               console.error('error with delete request', err);
@@ -168,7 +156,7 @@ class vendorTypePage extends React.Component {
       }
     };
 
-    const vendorTypeNameComponent = this.state.vendorTypes.map((vendorType) => {
+    const vendorTypeNameComponent = this.props.vtprops.map((vendorType) => {
       if (
         this.state.showVts !== false
       ) {
