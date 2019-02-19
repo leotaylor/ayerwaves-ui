@@ -19,6 +19,7 @@ class vendorPage extends React.Component {
   state = {
     vendorTypes: [],
     newVendor: defaultVendor,
+    showVendorEdit: 0,
   }
 
   componentDidMount = () => {
@@ -103,6 +104,21 @@ class vendorPage extends React.Component {
       });
   }
 
+  // EDIT VENDOR
+
+  editVendor = (id, vendor) => {
+    const showEditId = id * 1;
+    this.setState({showVendorEdit: showEditId});
+    this.setState({newVendor: vendor});
+  }
+
+  hideVendor = () => {
+    this.setState({showVendorEdit: 0});
+    this.setState({newVendor: defaultVendor});
+  }
+
+  // DELETE VENDOR
+
   deleteClick = (e) => {
     const vendorToDelete = e.target.id;
     vendorRequest
@@ -117,10 +133,117 @@ class vendorPage extends React.Component {
 
   render () {
     const vendorComponent = this.props.details.map((vendor) => {
-      return (
-        <div key={vendor.id} className='col-sm-12'>
-          <p className='col-sm-6'>{vendor.name}</p>
-          <button type="button" className="btn btn-danger btn-xs glyphicon glyphicon-trash " aria-hidden="true" id={vendor.id} onClick={this.deleteClick}></button>
+      const showVendor = this.state.showVendorEdit;
+      if (showVendor !== vendor.id) {
+        return (
+          <div key={vendor.id} className='col-sm-12'>
+            <p className='col-sm-6' onClick={() => this.editVendor(vendor.id, vendor)} >{vendor.name}</p>
+            <button type="button" className="btn btn-danger btn-xs glyphicon glyphicon-trash " aria-hidden="true" id={vendor.id} onClick={this.deleteClick}></button>
+          </div>
+        );
+      } else return (
+        <div className="row" key={vendor.id}>
+          <div className="col-xs-8">
+            <h2 className="text-center">Edit Vendor:</h2>
+            <form onSubmit={this.editFormSubmit}>
+              <div className="row">
+                <fieldset className="col-xs-12">
+                  <label className="text-left" htmlFor="name">Name:</label>
+                  <br />
+                  <input
+                    className="col-xs-12"
+                    type="text"
+                    id="name"
+                    placeholder="Vendor Name"
+                    defaultValue={vendor.name}
+                    onChange={this.nameChange}
+                  />
+                </fieldset>
+
+              </div>
+              <div className="row">
+                <fieldset className="col-xs-12">
+                  <label htmlFor="type">Vendor Type:</label>
+                  <br />
+                  <select className="col-sm-12" onChange={this.typeChange}>
+                    <option>Vendor Type</option>
+                    {vendorSelectComponent}
+                  </select>
+                </fieldset>
+              </div>
+
+              <div className="row">
+                <fieldset className="col-xs-12">
+                  <label htmlFor="description">Description:</label>
+                  <br />
+                  <input
+                    className="col-xs-12"
+                    type="text"
+                    id="description"
+                    placeholder="Description..."
+                    defaultValue={vendor.description}
+                    onChange={this.descChange}
+                  />
+                </fieldset>
+              </div>
+              <div className="row">
+                <fieldset className="col-xs-12">
+                  <label htmlFor="requirements">Requirements:</label>
+                  <br />
+                  <input
+                    className="col-xs-12"
+                    type="text"
+                    id="requirements"
+                    placeholder="Requirements..."
+                    defaultValue={vendor.requirements}
+                    onChange={this.reqChange}
+                  />
+                </fieldset>
+              </div>
+              <div className="row">
+                <fieldset className="col-xs-4">
+                  <label htmlFor="contactName">Contact Name:</label>
+                  <br />
+                  <input
+                    className="col-xs-12"
+                    type="text"
+                    id="contactName"
+                    placeholder="First Last Name"
+                    defaultValue={vendor.contactName}
+                    onChange={this.contactNameChange}
+                  />
+                </fieldset>
+
+                <fieldset className="col-xs-4">
+                  <label htmlFor="contactEmail">Contact Email:</label>
+                  <br />
+                  <input
+                    className="col-xs-12"
+                    type="text"
+                    id="contactEmail"
+                    placeholder="dude@dude.com"
+                    onChange={this.contactEmailChange}
+                    defaultValue={vendor.contactEmail}
+                  />
+                </fieldset>
+
+                <fieldset className="col-xs-4">
+                  <label htmlFor="contactPhone">Contact Phone:</label>
+                  <br />
+                  <input
+                    className="col-xs-12"
+                    type="text"
+                    id="contactPhone"
+                    placeholder="555-555-5555"
+                    onChange={this.contactPhoneChange}
+                    defaultValue={vendor.contactPhone}
+                  />
+                </fieldset>
+              </div>
+              <button className="btn-success btn-lg">Submit Vendor</button>
+            </form>
+          </div>
+          <button className="btn btn-info" onClick={this.hideVendor}>Hide</button>
         </div>
       );
     });

@@ -62,7 +62,6 @@ class admin extends React.Component {
       .getRequest()
       .then((vendors) => {
         this.setState({vendors});
-        console.log(this.state.vendors);
       })
       .catch((err) => {
         console.error('errror with getting vendors', err);
