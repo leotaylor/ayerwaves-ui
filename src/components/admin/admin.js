@@ -5,9 +5,11 @@ import GenreSelect from './GenreSelect';
 import StageSelect from './StageSelect';
 import genreRequest from '../../apiRequest/genre';
 import stageRequest from '../../apiRequest/stage';
+import vendorRequest from '../../apiRequest/vendor';
 import authRequest from '../../firebaseRequests/auth';
 import GenrePage from '../admin/genrePage/genrePage';
 import StagePage from '../admin/stagePage/stagePage';
+import VendorPage from '../admin/vendorPage/vendorPage';
 
 const defaultArtist = {
   name: '',
@@ -27,6 +29,8 @@ class admin extends React.Component {
     genres: [],
     stages: [],
     showArtistEdit: 0,
+    vendors: [],
+    showVendors: false,
   }
 
   componentDidMount () {
@@ -53,6 +57,14 @@ class admin extends React.Component {
       })
       .catch((err) => {
         console.error('error with getting genres', err);
+      });
+    vendorRequest
+      .getRequest()
+      .then((vendors) => {
+        this.setState({vendors});
+      })
+      .catch((err) => {
+        console.error('errror with getting vendors', err);
       });
   }
 
@@ -220,6 +232,15 @@ class admin extends React.Component {
       });
   }
 
+  // Vendor Stuff
+  showVen = () => {
+    this.setState({showVendors: true});
+  }
+
+  hideVen = () => {
+    this.setState({showVendors: false});
+  }
+
   render () {
 
     const artistComponent = this.state.artists.map((artist) => {
@@ -357,7 +378,7 @@ class admin extends React.Component {
     });
 
     return (
-      <div className="admin">
+      <div className="admin col-sm-12">
         <h1>Welcome Ayerwaves Admin</h1>
         <div className="col-sm-4 text-left">
           <h1>Artists</h1>
@@ -463,6 +484,25 @@ class admin extends React.Component {
             />
           </div>
         </div>
+        { this.state.showVendors === true ? (
+          <div className="col-sm-12">
+            <div className='row'>
+              <button onClick={this.hideVen}>Hide Vendors</button>
+            </div>
+            <div className="row">
+              <VendorPage
+                details={this.state.vendors}
+                updateState={this.updateState}
+              />
+            </div>
+          </div>
+        ) : (
+          <div className='row'>
+            <div className="col-sm-12">
+              <button onClick={this.showVen}>Edit Vendors</button>
+            </div>
+          </div>
+        )}
       </div>
     );
   }
