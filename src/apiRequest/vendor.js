@@ -13,6 +13,19 @@ const getRequest = () => {
   });
 };
 
+const postRequest = (newVendor) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .post(`https://ayerwavesapi.azurewebsites.net/api/vendor`, newVendor)
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
 const deleteRequest = (id) => {
   return new Promise((resolve, reject) => {
     axios
@@ -26,4 +39,4 @@ const deleteRequest = (id) => {
   });
 };
 
-export default {getRequest, deleteRequest};
+export default {getRequest, postRequest, deleteRequest};

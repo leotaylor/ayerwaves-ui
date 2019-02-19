@@ -1,13 +1,24 @@
 import React from 'react';
 import vendorRequest from '../../../apiRequest/vendor';
-// import authRequest from '../../../firebaseRequests/auth';
+import authRequest from '../../../firebaseRequests/auth';
 import VendorTypePage from '../vendorPage/vendorTypePage';
 import vendorTypeRequest from '../../../apiRequest/vendorType';
+
+const defaultVendor = {
+  name: '',
+  type: 0,
+  description: '',
+  requirements: '',
+  contactName: '',
+  contactEmail: '',
+  contactPhone: '',
+};
 
 class vendorPage extends React.Component {
 
   state = {
     vendorTypes: [],
+    newVendor: defaultVendor,
   }
 
   componentDidMount = () => {
@@ -23,6 +34,73 @@ class vendorPage extends React.Component {
 
   updateVendorState = () => {
     this.componentDidMount();
+  }
+
+  // Post New Vendro
+
+  formFieldStringState = (name, e) => {
+    const tempVendor = {...this.state.newVendor};
+    tempVendor[name] = e.target.value;
+    this.setState({newVendor: tempVendor});
+  }
+
+  formFieldNumberState = (name, e) => {
+    const tempVendor = {...this.state.newVendor};
+    tempVendor[name] = e.target.value * 1;
+    this.setState({newVendor: tempVendor});
+  }
+
+  nameChange = (e) => {
+    this.formFieldStringState('name', e);
+  };
+
+  typeChange = (e) => {
+    this.formFieldNumberState('type', e);
+  }
+
+  descChange = (e) => {
+    this.formFieldStringState('description', e);
+  };
+
+  reqChange = (e) => {
+    this.formFieldStringState('requirements', e);
+  };
+
+  contactNameChange = (e) => {
+    this.formFieldStringState('contactName', e);
+  };
+
+  contactEmailChange = (e) => {
+    this.formFieldStringState('contactEmail', e);
+  };
+
+  contactPhoneChange = (e) => {
+    this.formFieldStringState('contactPhone', e);
+  };
+
+  formSubmit = (e) => {
+    const {newVendor} = this.state;
+    newVendor.uid = authRequest.getUid();
+    e.preventDefault();
+    if (
+      newVendor.name &&
+      newVendor.type &&
+      newVendor.description
+    ) {
+      this.postVendor(this.state.newVendor);
+      this.setState({newVendor: defaultVendor});
+    } else {
+      alert('ugh');
+    }
+  }
+
+  postVendor = (e) => {
+    vendorRequest
+      .postRequest(this.state.newVendor)
+      .then(() => {
+        this.updateVendorState();
+        this.props.updateState();
+      });
   }
 
   deleteClick = (e) => {
@@ -77,16 +155,16 @@ class vendorPage extends React.Component {
                     id="name"
                     placeholder="Vendor Name"
                     // value={this.props.details.name}
-                    // onChange={this.nameChange}
+                    onChange={this.nameChange}
                   />
                 </fieldset>
 
               </div>
               <div className="row">
                 <fieldset className="col-xs-12">
-                  <label htmlFor="genre">Vendor Type:</label>
+                  <label htmlFor="type">Vendor Type:</label>
                   <br />
-                  <select className="col-sm-12" onChange={this.genreChange}>
+                  <select className="col-sm-12" onChange={this.typeChange}>
                     <option>Vendor Type</option>
                     {vendorSelectComponent}
                   </select>
@@ -103,7 +181,7 @@ class vendorPage extends React.Component {
                     id="description"
                     placeholder="Description..."
                     // value={this.state.newArtist.description}
-                    // onChange={this.descChange}
+                    onChange={this.descChange}
                   />
                 </fieldset>
               </div>
@@ -117,7 +195,7 @@ class vendorPage extends React.Component {
                     id="requirements"
                     placeholder="Requirements..."
                     // value={this.state.newArtist.description}
-                    // onChange={this.descChange}
+                    onChange={this.reqChange}
                   />
                 </fieldset>
               </div>
@@ -131,7 +209,7 @@ class vendorPage extends React.Component {
                     id="contactName"
                     placeholder="First Last Name"
                     // defaultValue={artist.description}
-                    // onChange={this.editDescChange}
+                    onChange={this.contactNameChange}
                   />
                 </fieldset>
 
@@ -143,7 +221,7 @@ class vendorPage extends React.Component {
                     type="text"
                     id="contactEmail"
                     placeholder="dude@dude.com"
-                    // onChange={this.editImageChange}
+                    onChange={this.contactEmailChange}
                     // defaultValue={artist.imageLink}
                   />
                 </fieldset>
@@ -156,7 +234,7 @@ class vendorPage extends React.Component {
                     type="text"
                     id="contactPhone"
                     placeholder="555-555-5555"
-                    // onChange={this.editImageChange}
+                    onChange={this.contactPhoneChange}
                     // defaultValue={artist.imageLink}
                   />
                 </fieldset>
