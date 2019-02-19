@@ -26,6 +26,19 @@ const postRequest = (newVendor) => {
   });
 };
 
+const putRequest = (vendorId, updatedVendor) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .put(`https://ayerwavesapi.azurewebsites.net/api/vendor/updateVendor/${vendorId}`, updatedVendor)
+      .then(res => {
+        resolve(res.data);
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
+};
+
 const deleteRequest = (id) => {
   return new Promise((resolve, reject) => {
     axios
@@ -39,4 +52,4 @@ const deleteRequest = (id) => {
   });
 };
 
-export default {getRequest, postRequest, deleteRequest};
+export default {getRequest, postRequest, putRequest, deleteRequest};

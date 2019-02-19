@@ -117,6 +117,36 @@ class vendorPage extends React.Component {
     this.setState({newVendor: defaultVendor});
   }
 
+  editFormSubmit = (e) => {
+    const {newVendor} = this.state;
+    newVendor.uid = authRequest.getUid();
+    const vId = e.target.id * 1;
+    e.preventDefault();
+    if (
+      newVendor.name &&
+      newVendor.type &&
+      newVendor.description
+    ) {
+      this.putVendor(vId, this.state.newVendor);
+      this.hideVendor();
+    } else {
+      alert('ugh');
+    }
+  }
+
+  putVendor = (id, update) => {
+    vendorRequest
+      .putRequest(id, update)
+      .then (() => {
+        console.log(update);
+        this.updateVendorState();
+        this.props.updateState();
+      })
+      .catch((err) => {
+        console.error('error with update request', err);
+      });
+  }
+
   // DELETE VENDOR
 
   deleteClick = (e) => {
@@ -165,9 +195,19 @@ class vendorPage extends React.Component {
                 <fieldset className="col-xs-12">
                   <label htmlFor="type">Vendor Type:</label>
                   <br />
-                  <select className="col-sm-12" onChange={this.typeChange}>
+                  {/* <select className="col-sm-12" onChange={this.typeChange}>
                     <option>Vendor Type</option>
                     {vendorSelectComponent}
+                  </select> */}
+                  <select className="col-sm-12" onChange={this.typeChange}>
+                    <option>Vendor Type</option>
+                    {this.state.vendorTypes.map((vendorType) => {
+                      return (
+                        <option className="col-sm-6" value={vendorType.id} key={vendorType.id}>
+                          {vendorType.vendorType}
+                        </option>
+                      );
+                    })}
                   </select>
                 </fieldset>
               </div>
@@ -240,10 +280,10 @@ class vendorPage extends React.Component {
                   />
                 </fieldset>
               </div>
-              <button className="btn-success btn-lg">Submit Vendor</button>
+              <button className="btn-success btn-lg" type="submit">Submit Vendor</button>
             </form>
           </div>
-          <button className="btn btn-info" onClick={this.hideVendor}>Hide</button>
+          <button className="btn btn-info" type='button' onClick={this.hideVendor}>Hide</button>
         </div>
       );
     });
