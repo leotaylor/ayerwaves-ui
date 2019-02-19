@@ -30,6 +30,7 @@ class admin extends React.Component {
     stages: [],
     showArtistEdit: 0,
     vendors: [],
+    showVendors: false,
   }
 
   componentDidMount () {
@@ -61,6 +62,7 @@ class admin extends React.Component {
       .getRequest()
       .then((vendors) => {
         this.setState({vendors});
+        console.log(this.state.vendors);
       })
       .catch((err) => {
         console.error('errror with getting vendors', err);
@@ -229,6 +231,15 @@ class admin extends React.Component {
       .catch((err) => {
         console.error('error with delete request', err);
       });
+  }
+
+  // Vendor Stuff
+  showVen = () => {
+    this.setState({showVendors: true});
+  }
+
+  hideVen = () => {
+    this.setState({showVendors: false});
   }
 
   render () {
@@ -474,12 +485,25 @@ class admin extends React.Component {
             />
           </div>
         </div>
-        <div className="row">
-          <VendorPage
-            details={this.state.vendors}
-            updateState={this.updateState}
-          />
-        </div>
+        { this.state.showVendors === true ? (
+          <div className="col-sm-12">
+            <div className='row'>
+              <button onClick={this.hideVen}>Hide Vendors</button>
+            </div>
+            <div className="row">
+              <VendorPage
+                details={this.state.vendors}
+                updateState={this.updateState}
+              />
+            </div>
+          </div>
+        ) : (
+          <div className='row'>
+            <div className="col-sm-12">
+              <button onClick={this.showVen}>Edit Vendors</button>
+            </div>
+          </div>
+        )}
       </div>
     );
   }
