@@ -107,6 +107,60 @@ class vendorPage extends React.Component {
                   />
                 </fieldset>
               </div>
+              <div className="row">
+                <fieldset className="col-xs-12">
+                  <label htmlFor="requirements">Requirements:</label>
+                  <br />
+                  <input
+                    className="col-xs-12"
+                    type="text"
+                    id="requirements"
+                    placeholder="Requirements..."
+                    // value={this.state.newArtist.description}
+                    // onChange={this.descChange}
+                  />
+                </fieldset>
+              </div>
+              <div className="row">
+                <fieldset className="col-xs-4">
+                  <label htmlFor="contactName">Contact Name:</label>
+                  <br />
+                  <input
+                    className="col-xs-12"
+                    type="text"
+                    id="contactName"
+                    placeholder="First Last Name"
+                    // defaultValue={artist.description}
+                    // onChange={this.editDescChange}
+                  />
+                </fieldset>
+
+                <fieldset className="col-xs-4">
+                  <label htmlFor="contactEmail">Contact Email:</label>
+                  <br />
+                  <input
+                    className="col-xs-12"
+                    type="text"
+                    id="contactEmail"
+                    placeholder="dude@dude.com"
+                    // onChange={this.editImageChange}
+                    // defaultValue={artist.imageLink}
+                  />
+                </fieldset>
+
+                <fieldset className="col-xs-4">
+                  <label htmlFor="contactPhone">Contact Phone:</label>
+                  <br />
+                  <input
+                    className="col-xs-12"
+                    type="text"
+                    id="contactPhone"
+                    placeholder="555-555-5555"
+                    // onChange={this.editImageChange}
+                    // defaultValue={artist.imageLink}
+                  />
+                </fieldset>
+              </div>
               <button className="btn-success btn-lg">Submit Vendor</button>
             </form>
           </div>
