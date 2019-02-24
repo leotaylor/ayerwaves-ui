@@ -1,5 +1,5 @@
 ## Screenshots
-![](https://media.giphy.com/media/1XbMe3IE4b6ebgZDLe/source.mp4)
-![](https://media.giphy.com/media/fVbW9iAPjAOKRC3MQI/source.mov)
-![](https://media.giphy.com/media/C89sjAEEgPaLKg7Gqg/source.mov)
-![](https://media.giphy.com/media/d5Fc7zdAyZKTsVS23x/source.mov)
+![](https://media.giphy.com/media/7zSPXSmT2t5ReGEdIZ/giphy.gif)
+![](https://media.giphy.com/media/fVbW9iAPjAOKRC3MQI/giphy.gif)
+![](https://media.giphy.com/media/C89sjAEEgPaLKg7Gqg/giphy.gif)
+![](https://media.giphy.com/media/d5Fc7zdAyZKTsVS23x/giphy.gif)
